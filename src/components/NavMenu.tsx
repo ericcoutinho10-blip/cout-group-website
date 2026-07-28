@@ -1,0 +1,112 @@
+"use client";
+
+import { useEffect } from "react";
+
+interface NavMenuProps {
+  open: boolean;
+  onClose: () => void;
+  onOpenModal: () => void;
+  onScrollTo: (id: string) => void;
+}
+
+const items = [
+  { label: "Início",    id: "home" },
+  { label: "Sobre",     id: "about" },
+  { label: "Produtos",  id: "services" },
+  { label: "Cases",     id: "works" },
+  { label: "Carreiras", id: "careers" },
+  { label: "Contato",   id: "modal" },
+];
+
+export default function NavMenu({ open, onClose, onOpenModal, onScrollTo }: NavMenuProps) {
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") onClose(); };
+    if (open) document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, [open, onClose]);
+
+  const handle = (id: string) => {
+    onClose();
+    setTimeout(() => {
+      if (id === "modal") onOpenModal();
+      else onScrollTo(id);
+    }, 400);
+  };
+
+  return (
+    <div
+      className="fixed inset-0 z-[115] flex flex-col"
+      style={{
+        background: "#0F2540",
+        color: "#fff",
+        opacity: open ? 1 : 0,
+        pointerEvents: open ? "all" : "none",
+        transition: "opacity 0.4s cubic-bezier(0.16,1,0.3,1)",
+      }}
+    >
+      {/* Topo */}
+      <div className="max-w-[88rem] mx-auto w-full px-5 sm:px-8 flex items-center justify-between py-5">
+        <div className="flex items-center gap-2 font-semibold text-lg">
+          <span style={{ color: "#6C9DE4", fontSize: "1.5rem", fontWeight: 700 }}>C</span>
+          COUT Group
+        </div>
+        <button
+          onClick={onClose}
+          className="inline-flex items-center gap-2 text-xs font-medium uppercase tracking-widest rounded-[0.875rem] px-4 py-2 transition-all duration-200"
+          style={{
+            border: "1px solid rgba(255,255,255,0.15)",
+            color: "rgba(255,255,255,0.7)",
+            letterSpacing: "0.05em",
+          }}
+        >
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+            <path d="M4 4l16 16M20 4 4 20"/>
+          </svg>
+          Fechar
+        </button>
+      </div>
+
+      {/* Nav */}
+      <nav className="flex-1 max-w-[88rem] mx-auto w-full px-5 sm:px-8 flex flex-col justify-center">
+        <ul className="flex flex-col gap-1">
+          {items.map(({ label, id }, i) => (
+            <li key={id}>
+              <button
+                onClick={() => handle(id)}
+                className="flex items-center gap-4 w-full text-left py-2 font-semibold tracking-tight transition-all duration-300"
+                style={{
+                  fontSize: "clamp(2.25rem, 5vw, 3.75rem)",
+                  opacity: open ? 1 : 0,
+                  transform: open ? "translateY(0)" : "translateY(1rem)",
+                  transition: `opacity 0.5s ease-out ${i * 45 + 80}ms, transform 0.5s ease-out ${i * 45 + 80}ms`,
+                }}
+              >
+                <span className="text-base font-normal" style={{ color: "rgba(255,255,255,0.3)" }}>
+                  0{i + 1}
+                </span>
+                <span style={{ color: "rgba(255,255,255,0.7)" }} className="hover:text-white transition-colors duration-200">
+                  {label}
+                </span>
+              </button>
+            </li>
+          ))}
+        </ul>
+      </nav>
+
+      {/* Rodapé do menu */}
+      <div
+        className="max-w-[88rem] mx-auto w-full px-5 sm:px-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 py-6 text-xs uppercase tracking-widest"
+        style={{ borderTop: "1px solid rgba(255,255,255,0.1)", color: "rgba(255,255,255,0.45)" }}
+      >
+        <span>Horário local</span>
+        <button
+          onClick={() => handle("modal")}
+          className="text-left transition-colors duration-200 hover:underline"
+          style={{ color: "rgba(255,255,255,0.7)" }}
+        >
+          Agendar conversa →
+        </button>
+      </div>
+    </div>
+  );
+}

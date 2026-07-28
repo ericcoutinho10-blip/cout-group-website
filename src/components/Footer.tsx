@@ -1,0 +1,151 @@
+"use client";
+
+import { useEffect, useRef, useState } from "react";
+
+interface FooterProps {
+  onOpenModal: () => void;
+  onScrollTo: (id: string) => void;
+}
+
+const cols = [
+  {
+    title: "Empresa",
+    links: [
+      { label: "Sobre nós", href: "#about" },
+      { label: "Cases", href: "#works" },
+      { label: "Contato", href: "#modal" },
+    ],
+  },
+  {
+    title: "Produtos",
+    links: [
+      { label: "COUT OS", href: "#services" },
+      { label: "Agentes de IA", href: "#services" },
+      { label: "Automação", href: "#services" },
+      { label: "HealthOS", href: "#services" },
+    ],
+  },
+  {
+    title: "Social",
+    links: [
+      { label: "LinkedIn", href: "#" },
+      { label: "Instagram", href: "#" },
+      { label: "WhatsApp", href: "#" },
+    ],
+  },
+];
+
+export default function Footer({ onOpenModal, onScrollTo }: FooterProps) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([e]) => { if (e.isIntersecting) { setVisible(true); obs.disconnect(); } },
+      { threshold: 0.1 }
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
+
+  return (
+    <footer
+      className="relative overflow-hidden"
+      style={{ borderRadius: "2rem 2rem 0 0", background: "#0F2540", color: "#fff" }}
+    >
+      <div ref={ref} className="relative z-10 max-w-[88rem] mx-auto px-5 sm:px-8 pt-20 lg:pt-24 pb-10">
+        {/* CTA row */}
+        <div
+          className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8 pb-16 mb-16"
+          style={{ borderBottom: "1px solid rgba(255,255,255,0.1)" }}
+        >
+          <h2
+            className="font-semibold tracking-tight max-w-[16ch] leading-tight"
+            style={{
+              fontSize: "clamp(2.25rem, 4vw, 3.75rem)",
+              opacity: visible ? 1 : 0,
+              transform: visible ? "translateY(0)" : "translateY(20px)",
+              transition: "opacity 900ms cubic-bezier(0.215,0.61,0.355,1), transform 900ms cubic-bezier(0.215,0.61,0.355,1)",
+            }}
+          >
+            Tem um projeto em mente? Vamos trabalhar juntos.
+          </h2>
+
+          <button
+            onClick={onOpenModal}
+            className="group inline-flex items-center gap-3 rounded-full text-sm font-medium shrink-0 transition-transform duration-300 hover:scale-[1.04]"
+            style={{
+              background: "#F7F9FC", color: "#0F2540",
+              padding: "0.375rem 0.375rem 0.375rem 1.5rem",
+            }}
+          >
+            Agendar conversa
+            <span
+              className="inline-grid place-items-center rounded-full transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+              style={{ width: "2.25rem", height: "2.25rem", background: "#0F2540", color: "#fff" }}
+            >
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M7 17 17 7M8 7h9v9"/>
+              </svg>
+            </span>
+          </button>
+        </div>
+
+        {/* Colunas */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 pb-16 mb-10"
+             style={{ borderBottom: "1px solid rgba(255,255,255,0.1)" }}>
+          {/* Marca */}
+          <div>
+            <div className="flex items-center gap-2 font-semibold text-lg mb-4">
+              <span style={{ color: "#3F7BD9", fontSize: "1.5rem", fontWeight: 700 }}>C</span>
+              COUT Group
+            </div>
+            <p className="text-sm leading-relaxed max-w-[20rem]" style={{ color: "rgba(255,255,255,0.55)" }}>
+              Um estúdio independente construindo marcas, produtos e os sistemas que os conectam.
+            </p>
+          </div>
+
+          {cols.map((col) => (
+            <div key={col.title}>
+              <p className="text-xs uppercase tracking-widest mb-4" style={{ color: "rgba(255,255,255,0.4)" }}>
+                {col.title}
+              </p>
+              <ul className="flex flex-col gap-3">
+                {col.links.map((link) => (
+                  <li key={link.label}>
+                    <button
+                      onClick={() => link.href === "#modal" ? onOpenModal() : onScrollTo(link.href.slice(1))}
+                      className="text-sm transition-all duration-200 hover:translate-x-1 hover:opacity-100 opacity-65 text-left"
+                    >
+                      {link.label}
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+
+        {/* Legal */}
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-xs"
+             style={{ color: "rgba(255,255,255,0.45)" }}>
+          <span>© 2025 COUT Group. Todos os direitos reservados.</span>
+          <div className="flex gap-6">
+            <a href="#" className="hover:opacity-100 opacity-70 transition-opacity">Privacidade</a>
+            <a href="#" className="hover:opacity-100 opacity-70 transition-opacity">Termos</a>
+          </div>
+        </div>
+      </div>
+
+      {/* Watermark */}
+      <div
+        className="absolute inset-x-0 -bottom-6 z-0 text-center pointer-events-none select-none font-bold leading-none"
+        style={{ fontSize: "13rem", color: "rgba(255,255,255,0.04)" }}
+      >
+        COUT
+      </div>
+    </footer>
+  );
+}
