@@ -49,8 +49,11 @@ const BEATS: Beat[] = [
     from: 0.004,
     to: 0.058,
     hero: true,
-    top: ["O futuro da sua empresa", "começa AGORA"],
-    accent: "AGORA",
+    // Quebra em três linhas e ponto de exclamação vêm do mockup do Canva.
+    // Sem `accent`: lá o "AGORA!" é branco como o resto. O azul competia
+    // com a palavra em vez de sustentá-la — a força está no tamanho e no
+    // ponto final, não na cor.
+    top: ["O futuro da sua", "empresa começa", "AGORA!"],
   },
   {
     // a mesa tomada por notificações
@@ -358,8 +361,13 @@ export default function ScrollFilm({
           aria-hidden="true"
         />
 
-        {/* véu de base: o filme é quase todo branco, então sem isso o texto branco some */}
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-cout-navy/55 via-cout-navy/25 to-cout-navy/65" />
+        {/* Véu de base. Existe porque boa parte do filme é branco e o texto
+            branco sumiria. Mas ele SOMA com a queda de luz radial de cada
+            beat: nos planos já escuros os dois juntos matavam a imagem — a
+            cidade ao amanhecer virava quase preta, longe do dourado do
+            mockup. Aliviado aqui; quem garante a leitura do texto é o radial,
+            que age só onde o texto está. */}
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-cout-navy/34 via-cout-navy/10 to-cout-navy/42" />
 
         {/* indicador de carregamento inicial */}
         {pct < 16 && (
@@ -375,11 +383,16 @@ export default function ScrollFilm({
            * acompanha a largura da janela; onde a quebra é inevitável (celular),
            * `text-wrap: balance` divide em linhas parelhas em vez de deixar
            * palavra órfã. */
+          /* Entrelinha abaixo de 1 no hero, como no mockup do Canva — as três
+           * linhas quase se tocam e o bloco lê como um objeto só. Medido no
+           * rolex.com: h1 de 62px com line-height 58,9px, razão 0,95. É a
+           * assinatura de tipo grande bem feito; 1.12 deixava o bloco frouxo.
+           * Só vale para display: nos beats menores a leitura pede mais ar. */
           const fluid: React.CSSProperties = b.hero
-            ? { fontSize: "clamp(2.1rem, 5vw, 4.4rem)" }
-            : { fontSize: "clamp(1.45rem, 3.1vw, 3.05rem)" };
+            ? { fontSize: "clamp(2.4rem, 5.6vw, 5.1rem)", lineHeight: 0.95 }
+            : { fontSize: "clamp(1.45rem, 3.1vw, 3.05rem)", lineHeight: 1.12 };
           const base =
-            "font-light leading-[1.12] tracking-tight text-white drop-shadow-[0_2px_28px_rgba(15,37,64,0.7)] [text-wrap:balance] [hyphens:none]";
+            "font-light tracking-tight text-white drop-shadow-[0_2px_28px_rgba(15,37,64,0.7)] [text-wrap:balance] [hyphens:none]";
 
           /** Destaca uma palavra em azul dentro da linha, quando o beat pede. */
           const render = (line: string) => {

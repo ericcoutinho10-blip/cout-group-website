@@ -41,8 +41,29 @@ export default function PageLoader({ onDone }: PageLoaderProps) {
     };
 
     rafRef.current = requestAnimationFrame(tick);
+
+    /* Saída de emergência por relógio de parede.
+     *
+     * O `requestAnimationFrame` não roda em aba de segundo plano — e abrir
+     * link em aba nova é o caminho normal de quem compartilha o site. Sem
+     * isto o visitante volta para a aba e encontra o contador parado em 000,
+     * porque o `tick` nunca avançou. O `setTimeout` é estrangulado em aba
+     * oculta, mas dispara; então o loader sempre termina, com ou sem quadros.
+     *
+     * Vale o dobro do tempo nominal: quem está vendo não percebe, e quem
+     * não está vendo não fica preso. */
+    const resgate = setTimeout(() => {
+      if (startRef.current === null || performance.now() - startRef.current < FILL_MS) {
+        setProgress(100);
+        setContentFading(true);
+        setExiting(true);
+        onDone();
+      }
+    }, FILL_MS * 2 + 1500);
+
     return () => {
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
+      clearTimeout(resgate);
     };
   }, [onDone]);
 

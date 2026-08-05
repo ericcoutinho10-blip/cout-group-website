@@ -2,11 +2,25 @@
 
 import { useEffect, useRef, useState } from "react";
 
-const services = [
-  { idx: "01", title: "COUT OS", desc: "Sistema operacional de dados que conecta toda a sua operação em tempo real." },
-  { idx: "02", title: "Agentes de IA", desc: "Inteligência autônoma para atendimento, análise e decisão sem intervenção manual." },
-  { idx: "03", title: "Automação", desc: "Fluxos que eliminam tarefas repetitivas e liberam o time para o que importa." },
-  { idx: "04", title: "HealthOS", desc: "Infraestrutura digital específica para saúde — em breve.", coming: true },
+// Os cinco vieram do mockup do Canva (Eric, 05/08/2026). Grafia corrigida:
+// "Growh Analitic" → "Growth Analytics".
+//
+// O mockup chamava a faixa de "Produtos". Mantive "Infraestrutura", que é o
+// que a nav diz e o que o filme afirma — "Não é sobre uma ferramenta, é sobre
+// infraestrutura". Chamar de produto contradiz a frase central do filme e
+// rebaixa cinco partes de um sistema a cinco itens de catálogo. Por isso cada
+// linha se descreve como parte do COUT OS, não como software avulso.
+// `coming` é opcional e hoje ninguém usa — mas o JSX lê `s.coming`. Sem o tipo
+// declarado, o TS infere a partir do array e a build de produção quebra (o dev
+// não pega). Mesma armadilha que já custou uma publicação no CreateBand.
+type Service = { idx: string; title: string; desc: string; coming?: boolean };
+
+const services: Service[] = [
+  { idx: "01", title: "CRM", desc: "O relacionamento inteiro num lugar só — sem planilha paralela, sem histórico perdido na troca de turno." },
+  { idx: "02", title: "Dashboard", desc: "O estado real da operação em tempo real, para decidir com dado e não com impressão." },
+  { idx: "03", title: "Agentes de IA", desc: "Inteligência autônoma para atendimento, triagem e análise — com revisão humana antes do que importa." },
+  { idx: "04", title: "Growth Analytics", desc: "Onde o crescimento acontece, onde ele trava, e o que muda se você agir agora." },
+  { idx: "05", title: "Comunicação", desc: "Cada mensagem no canal certo, na hora certa, sem ninguém precisar lembrar de mandar." },
 ];
 
 function ServiceRow({ s, delay, visible }: { s: typeof services[0]; delay: number; visible: boolean }) {

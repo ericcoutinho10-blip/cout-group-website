@@ -11,6 +11,7 @@ import About from "@/components/About";
 import PausaFilosofica from "@/components/PausaFilosofica";
 import CreateBand from "@/components/CreateBand";
 import Services from "@/components/Services";
+import CoutNews from "@/components/CoutNews";
 import Stats from "@/components/Stats";
 import Footer from "@/components/Footer";
 import NavMenu from "@/components/NavMenu";
@@ -83,7 +84,6 @@ export default function Home() {
       <Header
         ready={ready}
         onOpenMenu={() => setMenuOpen(true)}
-        onOpenModal={openModal}
         onIrPara={irPara}
       />
 
@@ -100,12 +100,19 @@ export default function Home() {
             <div id="quem-somos"><About /></div>
             <div id="como-pensamos"><CreateBand /></div>
             <div id="infraestrutura"><Services /></div>
+            <div id="cout-news"><CoutNews /></div>
             <Stats />
           </div>
         )}
       </main>
 
-      {universoAberto && <Footer onOpenModal={openModal} onScrollTo={irPara} />}
+      {/* "Entre em Contato" na nav aponta para cá — o contato mora no rodapé,
+          junto com "Vamos construir algo único." e as organizações. */}
+      {universoAberto && (
+        <div id="contato">
+          <Footer onOpenModal={openModal} onScrollTo={irPara} />
+        </div>
+      )}
 
       <NavMenu
         open={menuOpen}
