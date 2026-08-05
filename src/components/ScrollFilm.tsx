@@ -305,8 +305,14 @@ export default function ScrollFilm({
       const onResize = () => { current = -1; draw(Math.round(state.frame)); };
       window.addEventListener("resize", onResize);
 
+      /* Quando a Camada 2 abre, o documento cresce. Sem refresh, o Lenis fica
+       * com o limite antigo e a rolagem trava — o mesmo bug do pin. */
+      const onLayout = () => { ScrollTrigger.refresh(); lenis.resize(); };
+      window.addEventListener("cout:layout", onLayout);
+
       cleanup = () => {
         window.removeEventListener("resize", onResize);
+        window.removeEventListener("cout:layout", onLayout);
         st.kill();
         gsap.ticker.remove(raf);
         lenis.destroy();

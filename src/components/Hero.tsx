@@ -38,7 +38,7 @@ export default function Hero({ ready, onOpenModal, onScrollTo }: HeroProps) {
 
       {/* Watermark COUT */}
       <div
-        className="pointer-events-none absolute inset-x-0 bottom-24 z-[1] text-center select-none font-bold leading-none"
+        className="pointer-events-none absolute inset-x-0 bottom-24 z-[1] text-center select-none font-semibold leading-none"
         style={{
           fontSize: "13rem",
           color: "rgba(15,37,64,0.12)",

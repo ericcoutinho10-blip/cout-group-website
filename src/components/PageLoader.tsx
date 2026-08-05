@@ -70,7 +70,7 @@ export default function PageLoader({ onDone }: PageLoaderProps) {
         {/* Logo */}
         <div className="flex items-center gap-3">
           <span
-            className="text-3xl font-bold tracking-tight"
+            className="text-3xl font-semibold tracking-tight"
             style={{ color: "#3F7BD9" }}
           >
             C
