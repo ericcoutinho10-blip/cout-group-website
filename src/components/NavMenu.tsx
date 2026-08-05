@@ -99,7 +99,9 @@ export default function NavMenu({ open, onClose, onOpenModal, onScrollTo }: NavM
         className="max-w-[88rem] mx-auto w-full px-5 sm:px-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 py-6 text-xs uppercase tracking-widest"
         style={{ borderTop: "1px solid rgba(255,255,255,0.1)", color: "rgba(255,255,255,0.45)" }}
       >
-        <span>Horário local</span>
+        {/* O "Horário local" saiu daqui também — ele não existe no mockup do
+            Canva e não ajuda ninguém a decidir nada. Sobrou só o convite. */}
+        <span>COUT Group</span>
         <button
           onClick={() => handle("modal")}
           className="text-left transition-colors duration-200 hover:underline"
