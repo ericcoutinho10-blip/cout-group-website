@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import MarcaCout from "./MarcaCout";
 
 interface NavMenuProps {
   open: boolean;
@@ -46,8 +47,8 @@ export default function NavMenu({ open, onClose, onOpenModal, onScrollTo }: NavM
     >
       {/* Topo */}
       <div className="max-w-[88rem] mx-auto w-full px-5 sm:px-8 flex items-center justify-between py-5">
-        <div className="flex items-center gap-2 font-semibold text-lg">
-          <span style={{ color: "#6C9DE4", fontSize: "1.5rem", fontWeight: 700 }}>C</span>
+        <div className="flex items-center gap-2 text-lg font-semibold text-white">
+          <MarcaCout altura="1.5rem" />
           COUT Group
         </div>
         <button
@@ -104,7 +105,7 @@ export default function NavMenu({ open, onClose, onOpenModal, onScrollTo }: NavM
           className="text-left transition-colors duration-200 hover:underline"
           style={{ color: "rgba(255,255,255,0.7)" }}
         >
-          Agendar conversa →
+          Falar com um especialista →
         </button>
       </div>
     </div>

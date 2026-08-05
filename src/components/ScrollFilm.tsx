@@ -141,7 +141,6 @@ export default function ScrollFilm({
   const sectionRef = useRef<HTMLElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const beatRefs = useRef<(HTMLDivElement | null)[]>([]);
-  const ctaRef = useRef<HTMLDivElement>(null);
   const progressRef = useRef(0);
   const isMobile = useIsMobile();
   const [loaded, setLoaded] = useState(0);
@@ -280,13 +279,6 @@ export default function ScrollFilm({
             el.style.pointerEvents = o > 0.6 ? "auto" : "none";
           });
 
-          const cta = ctaRef.current;
-          if (cta) {
-            const o = Math.max(0, Math.min(1, (self.progress - 0.93) / 0.04));
-            cta.style.opacity = String(o);
-            cta.style.transform = `translateY(${(1 - o) * 18}px)`;
-            cta.style.pointerEvents = o > 0.6 ? "auto" : "none";
-          }
         },
       });
 
@@ -466,19 +458,9 @@ export default function ScrollFilm({
           );
         })}
 
-        {/* CTA final, sobre a logo formada */}
-        <div
-          ref={ctaRef}
-          style={{ opacity: 0 }}
-          className="absolute inset-x-0 bottom-[14vh] flex justify-center"
-        >
-          <button
-            onClick={onOpenModal}
-            className="rounded-full bg-white px-9 py-4 text-sm font-medium text-cout-navy shadow-[0_10px_40px_rgba(0,0,0,0.35)] transition hover:bg-cout-ice"
-          >
-            Agendar conversa
-          </button>
-        </div>
+        {/* Sem CTA aqui, de propósito. O filme termina puro; a porta está na
+            dobradiça, depois da pausa de 3s. Dois CTAs seguidos matariam o
+            silêncio que o último quadro precisa ter. */}
       </div>
     </section>
   );

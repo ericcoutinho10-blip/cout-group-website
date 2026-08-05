@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import MarcaCout from "./MarcaCout";
 
 interface PageLoaderProps {
   onDone: () => void;
@@ -68,14 +69,10 @@ export default function PageLoader({ onDone }: PageLoaderProps) {
         }}
       >
         {/* Logo */}
-        <div className="flex items-center gap-3">
-          <span
-            className="text-3xl font-semibold tracking-tight"
-            style={{ color: "#3F7BD9" }}
-          >
-            C
-          </span>
-          <span className="text-2xl font-semibold text-white tracking-tight">
+        {/* a marca herda currentColor: sobre o navy do loader precisa ser clara */}
+        <div className="flex items-center gap-3 text-white">
+          <MarcaCout altura="2rem" />
+          <span className="text-2xl font-semibold tracking-tight">
             COUT Group
           </span>
         </div>

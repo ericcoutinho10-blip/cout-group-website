@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import MarcaCout from "./MarcaCout";
 
 interface RequestModalProps {
   open: boolean;
@@ -83,7 +84,7 @@ export default function RequestModal({ open, onClose }: RequestModalProps) {
             <div className="mb-6">
               <div className="inline-flex items-center gap-2 text-sm font-medium mb-1" style={{ color: "rgba(31,41,55,0.6)" }}>
                 <span className="inline-block rounded-full" style={{ width: "0.375rem", height: "0.375rem", background: "#3F7BD9" }}/>
-                Agendar conversa
+                Falar com um especialista
               </div>
               <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight">
                 Conta o que você está construindo.
@@ -145,8 +146,8 @@ export default function RequestModal({ open, onClose }: RequestModalProps) {
           </>
         ) : (
           <div className="flex flex-col items-center text-center py-8 gap-4">
-            <div className="inline-grid place-items-center rounded-full text-2xl" style={{ width: "3.5rem", height: "3.5rem", background: "#0F2540", color: "#3F7BD9" }}>
-              C
+            <div className="inline-grid place-items-center rounded-full" style={{ width: "3.5rem", height: "3.5rem", background: "#0F2540", color: "#6C9DE4" }}>
+              <MarcaCout altura="1.1rem" />
             </div>
             <h2 className="text-2xl font-semibold">Mensagem recebida!</h2>
             <p className="max-w-[30ch] text-sm leading-relaxed" style={{ color: "rgba(31,41,55,0.6)" }}>

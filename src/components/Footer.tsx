@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import MarcaCout from "./MarcaCout";
 
 interface FooterProps {
   onOpenModal: () => void;
@@ -81,7 +82,7 @@ export default function Footer({ onOpenModal, onScrollTo }: FooterProps) {
               padding: "0.375rem 0.375rem 0.375rem 1.5rem",
             }}
           >
-            Agendar conversa
+            Falar com um especialista
             <span
               className="inline-grid place-items-center rounded-full transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
               style={{ width: "2.25rem", height: "2.25rem", background: "#0F2540", color: "#fff" }}
@@ -98,8 +99,8 @@ export default function Footer({ onOpenModal, onScrollTo }: FooterProps) {
              style={{ borderBottom: "1px solid rgba(255,255,255,0.1)" }}>
           {/* Marca */}
           <div>
-            <div className="flex items-center gap-2 font-semibold text-lg mb-4">
-              <span style={{ color: "#3F7BD9", fontSize: "1.5rem", fontWeight: 700 }}>C</span>
+            <div className="mb-4 flex items-center gap-2 text-lg font-semibold text-white">
+              <MarcaCout altura="1.5rem" />
               COUT Group
             </div>
             <p className="text-sm leading-relaxed max-w-[20rem]" style={{ color: "rgba(255,255,255,0.55)" }}>

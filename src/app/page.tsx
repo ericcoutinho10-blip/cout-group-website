@@ -6,6 +6,7 @@ import Header from "@/components/Header";
 import BarraProgresso from "@/components/BarraProgresso";
 import ScrollFilm from "@/components/ScrollFilm";
 import PosFilme from "@/components/PosFilme";
+import Manifesto from "@/components/Manifesto";
 import About from "@/components/About";
 import PausaFilosofica from "@/components/PausaFilosofica";
 import CreateBand from "@/components/CreateBand";
@@ -37,10 +38,16 @@ export default function Home() {
     document.body.style.overflow = menuOpen || modalOpen ? "hidden" : "";
   }, [menuOpen, modalOpen]);
 
-  const scrollTo = useCallback((id: string) => {
-    const el = document.getElementById(id);
-    if (!el) return;
-    setTimeout(() => el.scrollIntoView({ behavior: "smooth", block: "start" }), 50);
+  /* Navegar para um destino do Universo abre a Camada 2 primeiro, se ainda
+   * estiver fechada — é a saída de emergência para quem não quer o filme. */
+  const irPara = useCallback((id: string) => {
+    setUniversoAberto(true);
+    requestAnimationFrame(() => {
+      window.dispatchEvent(new Event("cout:layout"));
+      setTimeout(() => {
+        document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
+      }, 60);
+    });
   }, []);
 
   const openModal = useCallback(() => {
@@ -77,7 +84,7 @@ export default function Home() {
         ready={ready}
         onOpenMenu={() => setMenuOpen(true)}
         onOpenModal={openModal}
-        onScrollTo={scrollTo}
+        onIrPara={irPara}
       />
 
       {/* ── CAMADA 1 — a experiência ── */}
@@ -88,22 +95,23 @@ export default function Home() {
         {/* ── CAMADA 2 — o Universo COUT ── */}
         {universoAberto && (
           <div id="universo" ref={universoRef}>
-            <About />
-            <PausaFilosofica />
-            <CreateBand />
-            <Services />
+            <Manifesto />
+            <div id="filosofia"><PausaFilosofica /></div>
+            <div id="quem-somos"><About /></div>
+            <div id="como-pensamos"><CreateBand /></div>
+            <div id="infraestrutura"><Services /></div>
             <Stats />
           </div>
         )}
       </main>
 
-      {universoAberto && <Footer onOpenModal={openModal} onScrollTo={scrollTo} />}
+      {universoAberto && <Footer onOpenModal={openModal} onScrollTo={irPara} />}
 
       <NavMenu
         open={menuOpen}
         onClose={() => setMenuOpen(false)}
         onOpenModal={openModal}
-        onScrollTo={scrollTo}
+        onScrollTo={irPara}
       />
       <RequestModal open={modalOpen} onClose={() => setModalOpen(false)} />
     </>
