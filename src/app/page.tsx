@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useState } from "react";
 import PageLoader from "@/components/PageLoader";
 import Header from "@/components/Header";
-import Hero from "@/components/Hero";
+import ScrollFilm from "@/components/ScrollFilm";
 import About from "@/components/About";
 import PausaFilosofica from "@/components/PausaFilosofica";
 import CreateBand from "@/components/CreateBand";
@@ -65,7 +65,7 @@ export default function Home() {
       />
 
       <main id="main">
-        <Hero ready={ready} onOpenModal={openModal} onScrollTo={scrollTo} />
+        <ScrollFilm onOpenModal={openModal} />
         <About />
         <PausaFilosofica />
         <CreateBand />

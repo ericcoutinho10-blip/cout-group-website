@@ -2,14 +2,19 @@
 
 import { useEffect, useRef, useState } from "react";
 
-const tiles = [
-  { label: "Compreender", variant: "light" },
-  { label: "Conectar",    variant: "accent" },
-  { label: "→",           variant: "dark", isArrow: true },
-  { label: "Evoluir",     variant: "ghost" },
-] as const;
-
 type Variant = "light" | "accent" | "dark" | "ghost";
+
+/* O tipo é declarado antes da lista: sem isso o TypeScript infere uma união em
+ * que `isArrow` só existe num dos membros, e a desestruturação no map não
+ * compila na build de produção. */
+type Tile = { label: string; variant: Variant; isArrow?: boolean };
+
+const tiles: Tile[] = [
+  { label: "Compreender", variant: "light" },
+  { label: "Conectar", variant: "accent" },
+  { label: "→", variant: "dark", isArrow: true },
+  { label: "Evoluir", variant: "ghost" },
+];
 
 function tileStyle(variant: Variant): React.CSSProperties {
   switch (variant) {

@@ -17,6 +17,7 @@
 
   /* Fonts */
   --font-sans: var(--font-poppins), system-ui, sans-serif;
+  --font-serif: var(--font-instrument), "Times New Roman", Times, serif;
 
   /* Radii */
   --radius-pill: 9999px;
@@ -24,6 +25,106 @@
   --radius-card-sm: 1.25rem;
   --radius-control: 0.875rem;
 }
+
+/* ══════════════════════════════════════════════════════════════════
+   SISTEMA TIPOGRÁFICO
+   Arquitetura inspirada no site da Rolex: papéis tipográficos com
+   nome próprio, escala fluida por clamp(), ritmo vertical em vh e
+   cores em tripla RGB para permitir variação de opacidade.
+   As fontes deles são licenciadas — aqui usamos as nossas.
+   ══════════════════════════════════════════════════════════════════ */
+:root {
+  /* ── papéis (o Rolex tem 4; nós usamos 3) ───────────────────────
+     primary   corpo e títulos           Poppins Light
+     secondary rótulos e olho, espaçados Poppins + tracking largo
+     quote     manifesto e citações      serif editorial            */
+  --primary-font-family: var(--font-poppins), system-ui, sans-serif;
+  --primary-font-weight: 300;
+  --secondary-font-family: var(--font-poppins), system-ui, sans-serif;
+  --secondary-font-weight: 400;
+  --secondary-letter-spacing: 0.22em;
+  --quote-font-family: var(--font-instrument), "Times New Roman", Times, serif;
+  --quote-font-weight: 400;
+  --quote-opening: "\201C";
+  --quote-closing: "\201D";
+
+  /* ── escala fluida: min a 390px, max a 1600px ─────────────────── */
+  --fs-display: clamp(2.5rem, calc(1.372rem + 4.628vw), 6rem);
+  --fs-h1:      clamp(2rem, calc(1.275rem + 2.975vw), 4.25rem);
+  --fs-h2:      clamp(1.55rem, calc(1.083rem + 1.917vw), 3rem);
+  --fs-h3:      clamp(1.2rem, calc(0.99rem + 0.86vw), 1.85rem);
+  --fs-lead:    clamp(1.06rem, calc(0.95rem + 0.45vw), 1.4rem);
+  --fs-body:    clamp(1rem, calc(0.958rem + 0.172vw), 1.13rem);
+  --fs-label:   clamp(0.69rem, calc(0.651rem + 0.159vw), 0.81rem);
+
+  /* ── entrelinha por papel: título aperta, corpo respira ───────── */
+  --leading-display: 1.02;
+  --leading-title: 1.1;
+  --leading-body: 1.6;
+  --tracking-display: -0.03em;
+  --tracking-title: -0.02em;
+
+  /* ── ritmo vertical e margem, em unidades de viewport ─────────── */
+  --s-h-space: 5vh;
+  --m-h-space: 10vh;
+  --l-h-space: 15vh;
+  --outer-margin: 8vw;
+  --grid-gap: 8px;
+  --grid-col-num: 12;
+  --grid-col-unit: calc(
+    ((100vw - var(--outer-margin) * 2) - (var(--grid-gap) * (var(--grid-col-num) - 1)))
+    / var(--grid-col-num)
+  );
+  --vh100: 100dvh;
+
+  /* ── cores em tripla RGB: permitem rgb(var(--x) / 0.5) ────────── */
+  --navy: 15 37 64;
+  --blue: 63 123 217;
+  --blue-soft: 108 157 228;
+  --graphite: 31 41 55;
+  --slate: 107 114 128;
+  --ice: 247 249 252;
+  --pure-white: 255 255 255;
+}
+
+/* ── classes de papel ───────────────────────────────────────────── */
+.t-display,
+.t-h1,
+.t-h2,
+.t-h3 {
+  font-family: var(--primary-font-family);
+  font-weight: var(--primary-font-weight);
+  text-wrap: balance;
+  hyphens: none;
+}
+.t-display { font-size: var(--fs-display); line-height: var(--leading-display); letter-spacing: var(--tracking-display); }
+.t-h1      { font-size: var(--fs-h1);      line-height: var(--leading-title);   letter-spacing: var(--tracking-title); }
+.t-h2      { font-size: var(--fs-h2);      line-height: var(--leading-title);   letter-spacing: var(--tracking-title); }
+.t-h3      { font-size: var(--fs-h3);      line-height: 1.25;                   letter-spacing: -0.01em; }
+
+.t-lead { font-size: var(--fs-lead); line-height: var(--leading-body); font-weight: 300; text-wrap: pretty; }
+.t-body { font-size: var(--fs-body); line-height: var(--leading-body); text-wrap: pretty; }
+
+/* rótulo: o truque do Rolex é tracking largo em caixa alta */
+.t-label {
+  font-family: var(--secondary-font-family);
+  font-weight: var(--secondary-font-weight);
+  font-size: var(--fs-label);
+  letter-spacing: var(--secondary-letter-spacing);
+  text-transform: uppercase;
+}
+
+/* citação: o único lugar com serifa — manifesto e pausa filosófica */
+.t-quote {
+  font-family: var(--quote-font-family);
+  font-weight: var(--quote-font-weight);
+  font-size: var(--fs-h2);
+  line-height: 1.16;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+.t-quote--marks::before { content: var(--quote-opening); }
+.t-quote--marks::after  { content: var(--quote-closing); }
 
 /* ── Base ── */
 *,
@@ -34,14 +135,22 @@
 
 html {
   font-size: 16px;
+  -webkit-text-size-adjust: 100%;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* desenha a curva da letra com precisão geométrica em vez de otimizar
+     por velocidade — é o que dá o acabamento de tipografia do Rolex */
+  text-rendering: geometricPrecision;
   scroll-behavior: smooth;
 }
 
 body {
   background: #ffffff;
-  color: #1F2937;
-  font-family: var(--font-sans);
+  color: rgb(var(--graphite));
+  font-family: var(--primary-font-family);
+  font-weight: var(--primary-font-weight);
+  font-size: var(--fs-body);
+  line-height: var(--leading-body);
   overflow-x: hidden;
 }
 

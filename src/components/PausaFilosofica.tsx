@@ -2,30 +2,30 @@
 
 import { useEffect, useRef, useState } from "react";
 
+/* A pausa é o único lugar do site em serifa. É o papel que no sistema do
+ * Rolex cabe à fonte de citação: contraponto ao geométrico da Poppins,
+ * usado com parcimônia, só onde o texto é declaração e não informação. */
 const frases = [
   {
     text: "E se a tecnologia deixasse de ser o centro de tudo?",
-    color: "#1F2937",
-    size: "clamp(1.5rem, 3vw, 2.25rem)",
-    weight: "500",
+    role: "quote" as const,
+    tone: "ink" as const,
   },
   {
     text: "E passasse a ser apenas o que sempre deveria ter sido: uma extensão da inteligência humana.",
-    color: "#6B7280",
-    size: "clamp(1.25rem, 2.5vw, 1.875rem)",
-    weight: "400",
+    role: "lead" as const,
+    tone: "muted" as const,
   },
   {
     text: "É exatamente isso que construímos.",
-    color: "#3F7BD9",
-    size: "clamp(1.5rem, 3vw, 2.25rem)",
-    weight: "600",
+    role: "quote" as const,
+    tone: "accent" as const,
   },
 ];
 
-function FraseReveal({ text, color, size, weight, delay }: {
-  text: string; color: string; size: string; weight: string; delay: number;
-}) {
+type Frase = (typeof frases)[number];
+
+function FraseReveal({ text, role, tone, delay }: Frase & { delay: number }) {
   const ref = useRef<HTMLParagraphElement>(null);
   const [visible, setVisible] = useState(false);
 
@@ -33,21 +33,31 @@ function FraseReveal({ text, color, size, weight, delay }: {
     const el = ref.current;
     if (!el) return;
     const obs = new IntersectionObserver(
-      ([e]) => { if (e.isIntersecting) { setVisible(true); obs.disconnect(); } },
+      ([e]) => {
+        if (e.isIntersecting) {
+          setVisible(true);
+          obs.disconnect();
+        }
+      },
       { threshold: 0.5 }
     );
     obs.observe(el);
     return () => obs.disconnect();
   }, []);
 
+  const roleClass = role === "quote" ? "t-quote" : "t-lead";
+  const toneClass =
+    tone === "accent"
+      ? "text-cout-blue"
+      : tone === "muted"
+        ? "text-cout-slate"
+        : "text-cout-graphite";
+
   return (
     <p
       ref={ref}
-      className="leading-snug tracking-tight max-w-[32ch] mx-auto text-center"
+      className={`${roleClass} ${toneClass} mx-auto max-w-[26ch] text-center`}
       style={{
-        fontSize: size,
-        fontWeight: weight,
-        color,
         opacity: visible ? 1 : 0,
         transform: visible ? "translateY(0)" : "translateY(20px)",
         transition: `opacity 900ms cubic-bezier(0.215,0.61,0.355,1) ${delay}ms, transform 900ms cubic-bezier(0.215,0.61,0.355,1) ${delay}ms`,
@@ -60,8 +70,14 @@ function FraseReveal({ text, color, size, weight, delay }: {
 
 export default function PausaFilosofica() {
   return (
-    <section className="bg-white py-24 lg:py-36">
-      <div className="max-w-[88rem] mx-auto px-5 sm:px-8 flex flex-col items-center gap-12">
+    <section className="bg-white" style={{ paddingBlock: "var(--l-h-space)" }}>
+      <div
+        className="mx-auto flex max-w-[88rem] flex-col items-center"
+        style={{
+          paddingInline: "var(--outer-margin)",
+          gap: "var(--s-h-space)",
+        }}
+      >
         {frases.map((f, i) => (
           <FraseReveal key={i} {...f} delay={i * 150} />
         ))}
