@@ -18,10 +18,13 @@ import MarcaCout from "./MarcaCout";
 // procura. Contato entra na nav porque é o único item que o visitante pode
 // querer a qualquer momento, sem ter rolado nada.
 export const DESTINOS = [
+  // Ordem SEQUENCIAL: a nav segue a ordem em que as secoes aparecem na
+  // pagina. Clicar num destino leva para a tela correspondente, entao a
+  // barra precisa ser um mapa do percurso — nao uma lista arbitraria.
+  { label: "Cultura", id: "cultura" },
   { label: "Quem Somos", id: "quem-somos" },
   { label: "Infraestrutura", id: "infraestrutura" },
   { label: "Cout News", id: "cout-news" },
-  { label: "Cultura", id: "cultura" },
   { label: "Entre em Contato", id: "contato" },
 ] as const;
 

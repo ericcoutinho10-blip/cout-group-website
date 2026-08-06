@@ -11,14 +11,13 @@ interface NavMenuProps {
 }
 
 const items = [
-  // Os mesmos seis destinos do header. A lista antiga (Início, Sobre,
-  // Produtos, Cases, Carreiras) era do site genérico anterior — "Cases"
-  // e "Carreiras" nunca existiram, e apontar para seção inexistente é
-  // pior do que não ter o item.
-  { label: "Quem Somos",       id: "quem-somos" },
-  { label: "Infraestrutura",   id: "infraestrutura" },
-  { label: "Cout News",        id: "cout-news" },
-  { label: "Cultura",          id: "cultura" },
+  // Ordem SEQUENCIAL: a nav segue a ordem em que as secoes aparecem na
+  // pagina. Clicar num destino leva para a tela correspondente, entao a
+  // barra precisa ser um mapa do percurso — nao uma lista arbitraria.
+  { label: "Cultura", id: "cultura" },
+  { label: "Quem Somos", id: "quem-somos" },
+  { label: "Infraestrutura", id: "infraestrutura" },
+  { label: "Cout News", id: "cout-news" },
   { label: "Entre em Contato", id: "contato" },
 ];
 
