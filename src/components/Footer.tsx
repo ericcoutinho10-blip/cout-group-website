@@ -24,17 +24,16 @@ const cols = [
   {
     title: "Infraestrutura",
     links: [
-      { label: "CRM", href: "#infraestrutura" },
-      { label: "Dashboard", href: "#infraestrutura" },
-      { label: "Agentes de IA", href: "#infraestrutura" },
-      { label: "Growth Analytics", href: "#infraestrutura" },
+      { label: "Relacionamento", href: "#infraestrutura" },
+      { label: "Inteligência", href: "#infraestrutura" },
+      { label: "Operação", href: "#infraestrutura" },
+      { label: "Crescimento", href: "#infraestrutura" },
       { label: "Comunicação", href: "#infraestrutura" },
     ],
   },
   {
     title: "Falar com a COUT",
     links: [
-      { label: "WhatsApp", href: "https://wa.me/5511949545284", externo: true },
       { label: "Entre em contato", href: "#contato" },
     ],
   },
@@ -108,7 +107,10 @@ export default function Footer({ onOpenModal, onScrollTo }: FooterProps) {
               COUT Group
             </div>
             <p className="text-sm leading-relaxed max-w-[20rem]" style={{ color: "rgba(255,255,255,0.55)" }}>
-              Um estúdio independente construindo marcas, produtos e os sistemas que os conectam.
+              {/* "Estúdio independente construindo marcas e produtos" era
+                  descricao de agencia de design — o oposto do que o site
+                  inteiro afirma. A COUT constroi infraestrutura. */}
+              A infraestrutura que conecta pessoas, dados e decisões — invisível, silenciosa, inteligente.
             </p>
           </div>
 
