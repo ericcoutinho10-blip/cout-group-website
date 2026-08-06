@@ -16,11 +16,16 @@ import { useEffect, useRef, useState } from "react";
 type Service = { idx: string; title: string; desc: string; coming?: boolean; arte?: string };
 
 const services: Service[] = [
-  { idx: "01", title: "CRM", arte: "crm", desc: "O relacionamento inteiro num lugar só — sem planilha paralela, sem histórico perdido na troca de turno." },
-  { idx: "02", title: "Dashboard", arte: "dashboard", desc: "O estado real da operação em tempo real, para decidir com dado e não com impressão." },
-  { idx: "03", title: "Agentes de IA", arte: "agentes", desc: "Inteligência autônoma para atendimento, triagem e análise — com revisão humana antes do que importa." },
-  { idx: "04", title: "Growth Analytics", arte: "growth", desc: "Onde o crescimento acontece, onde ele trava, e o que muda se você agir agora." },
-  { idx: "05", title: "Comunicação", arte: "comunicacao", desc: "Cada mensagem no canal certo, na hora certa, sem ninguém precisar lembrar de mandar." },
+  { idx: "01", title: "Relacionamento", arte: "crm",
+    desc: "Tudo o que acontece entre empresa e cliente permanece conectado, organizado e acessível." },
+  { idx: "02", title: "Inteligência", arte: "agentes",
+    desc: "Agentes de IA executam tarefas, analisam informações e apoiam decisões com supervisão humana." },
+  { idx: "03", title: "Operação", arte: "dashboard",
+    desc: "Dashboards transformam dados dispersos em uma visão clara do que realmente está acontecendo." },
+  { idx: "04", title: "Crescimento", arte: "growth",
+    desc: "Analytics mostram onde a empresa cresce, onde perde oportunidades e quais ações geram impacto." },
+  { idx: "05", title: "Comunicação", arte: "comunicacao",
+    desc: "Cada interação acontece automaticamente no momento certo, pelo canal certo e para a pessoa certa." },
 ];
 
 function ServiceRow({ s, delay, visible }: { s: typeof services[0]; delay: number; visible: boolean }) {
@@ -127,8 +132,19 @@ export default function Services() {
               transition: "opacity 900ms cubic-bezier(0.215,0.61,0.355,1) 0.12s, transform 900ms cubic-bezier(0.215,0.61,0.355,1) 0.12s",
             }}
           >
-            O que construímos
+            A plataforma que conecta toda a operação
           </h2>
+          <p
+            className="t-lead mt-5 max-w-[42ch]"
+            style={{
+              color: "rgba(31,41,55,0.62)",
+              opacity: visible ? 1 : 0,
+              transform: visible ? "translateY(0)" : "translateY(20px)",
+              transition: "opacity 400ms cubic-bezier(.23,1,.32,1) .18s, transform 400ms cubic-bezier(.23,1,.32,1) .18s",
+            }}
+          >
+            Uma operação inteligente nasce da integração de cinco camadas.
+          </p>
         </div>
 
         <ul>
