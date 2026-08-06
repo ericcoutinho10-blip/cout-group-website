@@ -58,7 +58,7 @@ export default function Footer({ onOpenModal, onScrollTo }: FooterProps) {
   return (
     <footer
       className="relative overflow-hidden"
-      style={{ borderRadius: "2rem 2rem 0 0", background: "#0F2540", color: "#fff" }}
+      style={{ background: "#0F2540", color: "#fff" }}
     >
       <div ref={ref} className="relative z-10 max-w-[88rem] mx-auto px-5 sm:px-8 pt-20 lg:pt-24 pb-10">
         {/* CTA row */}

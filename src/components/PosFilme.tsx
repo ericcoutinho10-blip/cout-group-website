@@ -108,7 +108,18 @@ export default function PosFilme({ onAbrir }: { onAbrir: () => void }) {
           A MarcaCout usa mascara CSS: a cor vem do `text-` do pai, entao a
           mesma imagem serve clara sobre o filme e azul sobre o branco —
           nao existe um segundo arquivo para manter em sincronia. */}
-      <div className="mt-12 text-cout-navy" style={surge(fase >= 2)}>
+      {/* A marca chega em zoom, nao em fade: ela cresce de 0.72 para 1 ao
+          mesmo tempo que aparece. E o unico movimento de escala do site —
+          por isso funciona aqui, no momento em que a marca se apresenta. */}
+      <div
+        className="mt-12 text-cout-navy"
+        style={{
+          opacity: fase >= 2 ? 1 : 0,
+          transform: fase >= 2 ? "scale(1)" : "scale(0.72)",
+          transition:
+            "opacity 700ms cubic-bezier(.23,1,.32,1), transform 900ms cubic-bezier(.23,1,.32,1)",
+        }}
+      >
         <MarcaCout altura="clamp(3rem, 7vw, 4.75rem)" />
         <p className="t-h3 mt-5 font-light">COUT OS</p>
       </div>

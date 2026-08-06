@@ -12,11 +12,6 @@ import { useEffect, useRef, useState } from "react";
  * um argumento para eles sustentarem.
  */
 
-const ORGANIZACOES = [
-  "Dr. Hussein Awada",
-  "Indústrias Suavetex",
-  "Iman Hammoud",
-] as const;
 
 export default function Fechamento() {
   const ref = useRef<HTMLElement>(null);
@@ -61,20 +56,6 @@ export default function Fechamento() {
           tempo todo e faz a mesma coisa. Dois CTAs disputando a mesma
           intencao e pior do que um. A cor fica so no atendimento. */}
 
-      {/* A prova, sussurrada: só os nomes. Sem logo, sem métrica, sem elogio —
-          quem reconhece, reconhece; quem não reconhece não é atrapalhado. */}
-      <div className="mt-[clamp(5rem,12vh,8rem)]" style={surge(180)}>
-        <p className="t-label text-white/35">
-          Algumas organizações que confiaram na COUT
-        </p>
-        <ul className="mt-4 flex flex-wrap items-center justify-center gap-x-10 gap-y-2">
-          {ORGANIZACOES.map((nome) => (
-            <li key={nome} className="t-body font-light text-white/55">
-              {nome}
-            </li>
-          ))}
-        </ul>
-      </div>
     </section>
   );
 }

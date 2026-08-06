@@ -75,7 +75,7 @@ export default function PageLoader({ onDone }: PageLoaderProps) {
       className="fixed inset-0 z-[120] flex flex-col items-center justify-center gap-8"
       style={{
         background: "#0F2540",
-        borderRadius: "0 0 2rem 2rem",
+
         transform: exiting ? "translateY(-100%)" : "translateY(0%)",
         transition: exiting ? "transform 0.7s cubic-bezier(0.22,1,0.36,1)" : "none",
       }}
