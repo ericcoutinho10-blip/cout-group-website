@@ -51,32 +51,38 @@ export default function Manifesto() {
       <div className="absolute inset-0">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/arte/manifesto-fundo.webp`}
+          src={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/arte/mao-humanoide.webp`}
           alt=""
-          width={2560}
-          height={1440}
+          width={2400}
+          height={1018}
           className="h-full w-full"
           style={{ objectFit: "cover", objectPosition: "center" }}
         />
-        <div
-          className="absolute inset-0"
-          style={{
-            background:
-              "radial-gradient(85% 90% at 8% 45%, rgb(255 255 255 / 0.92) 0%, rgb(255 255 255 / 0.55) 45%, rgb(255 255 255 / 0) 78%)",
-          }}
-        />
+        {/* O veu branco radial saiu. Ele existia para o texto em HTML ficar
+            legivel sobre a area clara do quadro; com o texto queimado na arte
+            ele so lavava a imagem do Eric. A arte entra limpa, como ele
+            montou. */}
       </div>
 
       <div
-        className="relative mx-auto flex min-h-[82vh] max-w-[88rem] flex-col justify-center"
+        className="relative mx-auto flex min-h-[86vh] max-w-[88rem] flex-col justify-end"
         style={{ paddingInline: "var(--outer-margin)" }}
       >
-        {/* O texto vem QUEIMADO na arte que o Eric montou, então não se
-            repete aqui — duas vezes a mesma frase lê como erro. O custo é
-            real e está registrado: texto em imagem não reflui no celular e
-            leitor de tela não alcança. Por isso a frase segue no aria-label
-            da seção, e a versão sem texto queimado continua sendo o certo
-            quando der tempo. */}
+        {/* A frase volta a ser texto de verdade, centralizada embaixo como
+            no print do Eric. Em HTML ela reflui no celular e o leitor de
+            tela alcanca — o que texto queimado na imagem nao faz. A arte
+            usada e a versao sem texto, para nao duplicar. */}
+        <p
+          className="t-h2 mx-auto max-w-[24ch] pb-[8vh] text-center [text-wrap:balance]"
+          style={{
+            color: "rgb(var(--navy))",
+            opacity: visivel ? 1 : 0,
+            transform: visivel ? "translateY(0)" : "translateY(20px)",
+            transition: "opacity 400ms cubic-bezier(.23,1,.32,1), transform 400ms cubic-bezier(.23,1,.32,1)",
+          }}
+        >
+          Um toque especial de quem domina a tecnologia com excelência.
+        </p>
       </div>
     </section>
   );
