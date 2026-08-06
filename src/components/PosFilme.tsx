@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import MarcaCout from "./MarcaCout";
 
 /* ─────────────────────────────────────────────────────────────────────
  * A DOBRADIÇA
@@ -39,9 +40,9 @@ export default function PosFilme({ onAbrir }: { onAbrir: () => void }) {
       }
       // 3s de silêncio, depois a linha, depois a frase, depois a porta
       timers = [
-        setTimeout(() => setFase(1), 3000),
-        setTimeout(() => setFase(2), 4200),
-        setTimeout(() => setFase(3), 5400),
+        setTimeout(() => setFase(1), 1500),
+        setTimeout(() => setFase(2), 2300),
+        setTimeout(() => setFase(3), 2900),
       ];
     };
 
@@ -81,7 +82,7 @@ export default function PosFilme({ onAbrir }: { onAbrir: () => void }) {
   return (
     <section
       ref={ref}
-      className="relative flex min-h-[100dvh] flex-col items-center justify-center bg-cout-navy text-center"
+      className="relative flex min-h-[72vh] flex-col items-center justify-center bg-cout-navy px-[var(--outer-margin)] py-[clamp(5rem,12vh,8rem)] text-center"
       style={{ paddingInline: "var(--outer-margin)" }}
       aria-label="Depois do filme"
     >
@@ -99,19 +100,20 @@ export default function PosFilme({ onAbrir }: { onAbrir: () => void }) {
           do site (componente Fechamento), como o Eric pediu — no mockup do
           Canva elas fecham a página, não abrem o conteúdo. Aqui fica só a
           passagem: a pausa e o convite para continuar. */}
-      <p
-        className="t-h2 mt-10 text-white"
-        style={surge(fase >= 2)}
-      >
-        Há mais para ver.
-      </p>
+      {/* A marca fecha o filme, como na tela do Canva. Antes esta tela tinha
+          só uma linha e um botão em 100dvh — muito vazio para muito scroll.
+          "Vamos construir algo único." não se repete aqui: ela fecha o site. */}
+      <div className="mt-12 text-white" style={surge(fase >= 2)}>
+        <MarcaCout altura="clamp(3rem, 7vw, 4.75rem)" />
+        <p className="t-h3 mt-5 font-light">COUT OS</p>
+      </div>
 
       <button
         onClick={onAbrir}
         className="t-label mt-12 rounded-full border border-white/30 px-9 py-4 text-white transition-colors duration-500 hover:border-white/70 hover:bg-white/5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white/60"
         style={{ ...surge(fase >= 3, 200), pointerEvents: fase >= 3 ? "auto" : "none" }}
       >
-        Começar
+        Continuar
       </button>
 
     </section>
