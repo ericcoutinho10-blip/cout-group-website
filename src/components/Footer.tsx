@@ -18,7 +18,7 @@ const cols = [
     links: [
       { label: "Quem Somos", href: "#quem-somos" },
       { label: "Cultura", href: "#cultura" },
-      { label: "COUT NEWS", href: "#cout-news" },
+      { label: "Cout News", href: "#cout-news" },
     ],
   },
   {

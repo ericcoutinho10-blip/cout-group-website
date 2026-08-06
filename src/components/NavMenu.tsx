@@ -17,7 +17,7 @@ const items = [
   // pior do que não ter o item.
   { label: "Quem Somos",       id: "quem-somos" },
   { label: "Infraestrutura",   id: "infraestrutura" },
-  { label: "COUT NEWS",        id: "cout-news" },
+  { label: "Cout News",        id: "cout-news" },
   { label: "Cultura",          id: "cultura" },
   { label: "Entre em Contato", id: "contato" },
 ];

@@ -114,10 +114,18 @@
   text-transform: uppercase;
 }
 
-/* citação: o único lugar com serifa — manifesto e pausa filosófica */
+/* Citação.
+ *
+ * A serifa saiu. Ela era o unico ponto do site com outra familia, e na
+ * pratica aparecia como titulo na Cultura e como fecho no Quem Somos —
+ * papeis que sao da Poppins. Duas familias so se justificam quando cada
+ * uma tem um trabalho claro; aqui a segunda tinha virado sotaque.
+ *
+ * A citacao continua existindo como papel: ela se distingue por tamanho,
+ * peso leve e entrelinha aberta, nao por trocar de fonte. */
 .t-quote {
-  font-family: var(--quote-font-family);
-  font-weight: var(--quote-font-weight);
+  font-family: var(--primary-font-family);
+  font-weight: 300;
   font-size: var(--fs-h2);
   line-height: 1.16;
   letter-spacing: -0.01em;

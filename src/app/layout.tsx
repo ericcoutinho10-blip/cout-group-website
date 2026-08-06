@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Poppins, Instrument_Serif } from "next/font/google";
+import { Poppins } from "next/font/google";
 import "./globals.css";
 
 const poppins = Poppins({
@@ -11,13 +11,6 @@ const poppins = Poppins({
 
 // Serifa editorial, usada só em citação e manifesto — o contraponto à
 // geometria da Poppins. É o papel que no Rolex cabe à SangBleuKingdom.
-const instrument = Instrument_Serif({
-  variable: "--font-instrument",
-  subsets: ["latin"],
-  weight: ["400"],
-  style: ["normal", "italic"],
-  display: "swap",
-});
 
 export const metadata: Metadata = {
   title: "COUT Group — Infraestrutura Inteligente",
@@ -42,7 +35,7 @@ export default function RootLayout({
   return (
     <html
       lang="pt-BR"
-      className={`${poppins.variable} ${instrument.variable} antialiased`}
+      className={`${poppins.variable} antialiased`}
     >
       <body className="min-h-screen bg-white text-cout-graphite overflow-x-hidden">
         {children}

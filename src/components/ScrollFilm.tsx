@@ -31,9 +31,6 @@ type Beat = {
   bottomAlign?: "left" | "right";
   /** lista vertical (pilares), entra abaixo da metade de cima */
   list?: string[];
-  /** hero: tipografia maior (a abertura) */
-  hero?: boolean;
-  accent?: string;
 };
 
 /**
@@ -44,68 +41,30 @@ type Beat = {
 const FADE = 0.014;
 
 const BEATS: Beat[] = [
-  {
-    // cidade ao amanhecer
-    from: 0.004,
-    to: 0.058,
-    hero: true,
-    top: ["O futuro da", "sua empresa", "começa agora."],
-  },
-  {
-    // a mesa tomada por notificações
-    from: 0.09,
-    to: 0.15,
-    top: ["Entre um paciente e", "o próximo ainda", "existe uma pilha de", "tarefas que ninguém", "escolheu fazer."],
-  },
-  {
-    // ele levanta os olhos para a janela
-    from: 0.182,
-    to: 0.208,
-    top: ["E se houvesse uma", "infraestrutura pensada", "para resolver isso?"],
-  },
-  {
-    // as mãos se tocam — o ponto de virada
-    from: 0.23,
-    to: 0.268,
-    top: ["Decisões que geram", "emoções e conexões reais."],
-  },
-  {
-    // a IA contemplando a cidade
-    from: 0.3,
-    to: 0.352,
-    top: ["Não é sobre uma ferramenta.", "É sobre infraestrutura", "e tecnologia."],
-  },
-  {
-    // a IA no painel e na recepção
-    from: 0.384,
-    to: 0.436,
-    top: ["Invisível, silenciosa,", "inteligente. Trabalhando", "enquanto você cuida de", "pessoas."],
-  },
-  {
-    // hall, whatsapp respondendo sozinho, a IA apresentando resultados
-    from: 0.468,
-    to: 0.63,
-    top: ["Construímos", "previsibilidade com…"],
-    list: ["Comunicação", "Gestão", "Organização", "Análise & dados"],
-  },
-  {
-    // a recepcionista presente, sem tela entre ela e a paciente
-    from: 0.662,
-    to: 0.7,
-    top: ["Não substituímos humano", "potencializamos o", "trabalho deles."],
-  },
-  {
-    // o médico saindo no fim de tarde
-    from: 0.724,
-    to: 0.754,
-    top: ["E você volta a ser", "quem sempre quis ser."],
-  },
-  {
-    // o campus visto de cima, em golden hour
-    from: 0.788,
-    to: 0.812,
-    top: ["A melhor tecnologia", "é aquela que", "opera em silêncio."],
-  },
+  // Falas em tamanho de legenda: uma ou duas linhas curtas. O texto do Eric
+  // continua palavra por palavra; o que mudou foi a quebra — bloco de cinco
+  // linhas nao e legenda, e cartaz.
+  { from: 0.004, to: 0.058,
+    top: ["O futuro da sua empresa começa agora."] },
+  { from: 0.09, to: 0.15,
+    top: ["Entre um paciente e o próximo ainda existe", "uma pilha de tarefas que ninguém escolheu fazer."] },
+  { from: 0.182, to: 0.208,
+    top: ["E se houvesse uma infraestrutura", "pensada para resolver isso?"] },
+  { from: 0.23, to: 0.268,
+    top: ["Decisões que geram emoções e conexões reais."] },
+  { from: 0.3, to: 0.352,
+    top: ["Não é sobre uma ferramenta.", "É sobre infraestrutura e tecnologia."] },
+  { from: 0.384, to: 0.436,
+    top: ["Invisível, silenciosa, inteligente.", "Trabalhando enquanto você cuida de pessoas."] },
+  { from: 0.468, to: 0.63,
+    top: ["Construímos previsibilidade com…"],
+    list: ["Comunicação", "Gestão", "Organização", "Análise & dados"] },
+  { from: 0.662, to: 0.7,
+    top: ["Não substituímos humano —", "potencializamos o trabalho deles."] },
+  { from: 0.724, to: 0.754,
+    top: ["E você volta a ser quem sempre quis ser."] },
+  { from: 0.788, to: 0.812,
+    top: ["A melhor tecnologia é aquela", "que opera em silêncio."] },
 ];
 
 function useIsMobile() {
@@ -367,29 +326,16 @@ export default function ScrollFilm({
            * acompanha a largura da janela; onde a quebra é inevitável (celular),
            * `text-wrap: balance` divide em linhas parelhas em vez de deixar
            * palavra órfã. */
-          /* Entrelinha abaixo de 1 no hero, como no mockup do Canva — as três
-           * linhas quase se tocam e o bloco lê como um objeto só. Medido no
-           * rolex.com: h1 de 62px com line-height 58,9px, razão 0,95. É a
-           * assinatura de tipo grande bem feito; 1.12 deixava o bloco frouxo.
-           * Só vale para display: nos beats menores a leitura pede mais ar. */
-          const fluid: React.CSSProperties = b.hero
-            ? { fontSize: "clamp(2.4rem, 5.6vw, 5.1rem)", lineHeight: 0.95 }
-            : { fontSize: "clamp(1.45rem, 3.1vw, 3.05rem)", lineHeight: 1.12 };
-          const base =
-            "font-light tracking-tight text-white drop-shadow-[0_2px_28px_rgba(15,37,64,0.7)] [text-wrap:balance] [hyphens:none]";
-
-          /** Destaca uma palavra em azul dentro da linha, quando o beat pede. */
-          const render = (line: string) => {
-            if (!b.accent || !line.includes(b.accent)) return line;
-            const [before, after] = line.split(b.accent);
-            return (
-              <>
-                {before}
-                <span className="font-medium text-cout-blue">{b.accent}</span>
-                {after}
-              </>
-            );
+          const fluid: React.CSSProperties = {
+            fontSize: "clamp(1.05rem, 1.7vw, 1.6rem)",
+            lineHeight: 1.35,
           };
+          const base =
+            "font-normal tracking-normal text-white [text-wrap:balance] [hyphens:none] drop-shadow-[0_1px_10px_rgba(0,0,0,0.85)]";
+
+          /* O destaque em azul dentro da frase saiu junto com o modelo de
+             cartaz. Legenda de filme nao tem palavra colorida — a enfase
+             vem do corte e do que esta na tela, nao da tinta. */
 
           return (
             <div
@@ -405,28 +351,34 @@ export default function ScrollFilm({
                 aria-hidden="true"
                 className="pointer-events-none absolute inset-0"
                 style={{
+                  /* Antes eram duas quedas de luz nos cantos opostos, porque
+                     o texto pousava em dois lugares. Com a legenda fixa na
+                     base, basta um degrade de baixo para cima — mais leve, e
+                     preserva a imagem inteira acima da linha do texto. */
                   background:
-                    "radial-gradient(70% 75% at 18% 22%, rgba(15,37,64,0.82) 0%, rgba(15,37,64,0.42) 45%, rgba(15,37,64,0) 78%)," +
-                    "radial-gradient(70% 75% at 78% 80%, rgba(15,37,64,0.78) 0%, rgba(15,37,64,0.38) 45%, rgba(15,37,64,0) 78%)",
+                    "linear-gradient(to top, rgba(10,22,40,0.78) 0%, rgba(10,22,40,0.45) 14%, rgba(10,22,40,0.10) 26%, rgba(10,22,40,0) 38%)",
                 }}
               />
 
               {/* metade de cima */}
-              <div className="absolute left-0 top-[22%] w-full max-w-[min(92vw,72rem)] px-6 text-left sm:px-12 lg:px-20">
+              {/* Faixa de legenda: base da tela, centralizada, medida curta.
+                  Sempre no mesmo lugar — e isso que faz o olho parar de
+                  procurar o texto e voltar para a imagem. */}
+              <div className="absolute inset-x-0 bottom-[9vh] mx-auto w-full max-w-[min(92vw,54rem)] px-6 text-center">
                 {b.top && b.top.map((line, j) => (
                   <p key={j} className={base} style={fluid}>
-                    {render(line)}
+                    {line}
                   </p>
                 ))}
 
                 {/* lista de pilares, quando existe */}
                 {b.list && (
-                  <ul className="mt-[7vh] space-y-1.5 sm:space-y-2">
+                  <ul className="mt-3 flex flex-wrap justify-center gap-x-6 gap-y-1">
                     {b.list.map((item) => (
                       <li
                         key={item}
-                        className="font-light leading-[1.22] tracking-tight text-white drop-shadow-[0_2px_28px_rgba(15,37,64,0.7)]"
-                        style={{ fontSize: "clamp(1.25rem, 2.5vw, 2.4rem)" }}
+                        className="font-normal text-white/85 drop-shadow-[0_1px_10px_rgba(0,0,0,0.85)]"
+                        style={{ fontSize: "clamp(0.95rem, 1.4vw, 1.3rem)" }}
                       >
                         {item}
                       </li>
