@@ -84,9 +84,17 @@ export default function PausaFilosofica() {
 
         {/* A arte fecha a Cultura. Sangra para fora da margem porque imagem
             contida em coluna lê como ilustração; sangrando, lê como cena. */}
+        {/* De fora a fora, como o manifesto. A caixa arredondada dentro da
+            margem fazia a arte ler como ilustracao; sangrando ate a borda da
+            tela ela vira cena. `height: auto` mantem a imagem inteira — sem
+            proporcao fixa nao ha recorte das bordas. */}
         <div
-          className="w-full overflow-hidden rounded-[1.25rem]"
-          style={{ marginTop: "var(--s-h-space)" }}
+          className="overflow-hidden"
+          style={{
+            marginTop: "var(--s-h-space)",
+            marginInline: "calc(var(--outer-margin) * -1)",
+            width: "calc(100% + var(--outer-margin) * 2)",
+          }}
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
@@ -97,7 +105,7 @@ export default function PausaFilosofica() {
             width={1800}
             height={763}
             className="w-full"
-            style={{ objectFit: "cover" }}
+            style={{ display: "block", height: "auto" }}
           />
         </div>
       </div>
