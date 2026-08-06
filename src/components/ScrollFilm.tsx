@@ -57,10 +57,10 @@ const BEATS: Beat[] = [
   { from: 0.384, to: 0.436,
     top: ["Invisível, silenciosa, inteligente.", "Trabalhando enquanto você cuida de pessoas."] },
   { from: 0.468, to: 0.63,
-    top: ["Construímos previsibilidade com…"],
+    top: ["Construímos previsibilidade com:"],
     list: ["Comunicação", "Gestão", "Organização", "Análise & dados"] },
   { from: 0.662, to: 0.7,
-    top: ["Não substituímos humano —", "potencializamos o trabalho deles."] },
+    top: ["Não substituímos humano,", "potencializamos o trabalho deles."] },
   { from: 0.724, to: 0.754,
     top: ["E você volta a ser quem sempre quis ser."] },
   { from: 0.788, to: 0.812,
@@ -371,15 +371,17 @@ export default function ScrollFilm({
                   </p>
                 ))}
 
-                {/* lista de pilares, quando existe */}
+                {/* Pilares em linha, separados por traço, como o Eric escreveu:
+                    "Comunicação - Gestão - Organização - Análise & dados". */}
                 {b.list && (
-                  <ul className="mt-3 flex flex-wrap justify-center gap-x-6 gap-y-1">
-                    {b.list.map((item) => (
+                  <ul className="mt-3 flex flex-wrap items-center justify-center gap-x-3 gap-y-1">
+                    {b.list.map((item, k) => (
                       <li
                         key={item}
                         className="font-normal text-white/85 drop-shadow-[0_1px_10px_rgba(0,0,0,0.85)]"
                         style={{ fontSize: "clamp(0.95rem, 1.4vw, 1.3rem)" }}
                       >
+                        {k > 0 && <span className="mr-3 opacity-50">-</span>}
                         {item}
                       </li>
                     ))}
