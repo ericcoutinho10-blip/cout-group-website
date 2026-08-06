@@ -1,2 +1,2 @@
-:HL["/cout-group-website/_next/static/chunks/203mcl_ar38av.css","style"]
-0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"/_not-found","param":null,"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}},"staleTime":300,"buildId":"tSJDTL5RxxEszD87B8VmL"}
+:HL["/cout-group-website/_next/static/chunks/21ie5tywlozz7.css","style"]
+0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"/_not-found","param":null,"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}},"staleTime":300,"buildId":"FhkdlgTQ8dE7qq8pgmjha"}
