@@ -7,10 +7,6 @@ import { useEffect, useRef, useState } from "react";
 // Copy definida pelo Eric em 06/08/2026, no lugar do "Nós não construímos
 // tecnologia / Pessoas constroem tecnologia...". Uma frase só: o manifesto
 // ganha peso por ficar sozinho na tela, não por acumular linhas.
-const LINHAS = [
-  "Um toque especial de quem",
-  "domina a tecnologia com excelência.",
-];
 
 export default function Manifesto() {
   const ref = useRef<HTMLElement>(null);
@@ -41,7 +37,7 @@ export default function Manifesto() {
       id="manifesto"
       ref={ref}
       className="relative overflow-hidden bg-white"
-      aria-label="Manifesto"
+      aria-label="Um toque especial de quem domina a tecnologia com excelência."
     >
       {/* A arte OCUPA a seção inteira e a frase vive dentro dela — era o
           contrário: navy com o texto e a imagem pendurada embaixo. Imagem
@@ -55,12 +51,12 @@ export default function Manifesto() {
       <div className="absolute inset-0">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/arte/mao-humanoide.webp`}
+          src={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/arte/manifesto-fundo.webp`}
           alt=""
-          width={2400}
-          height={1018}
+          width={2560}
+          height={1440}
           className="h-full w-full"
-          style={{ objectFit: "cover", objectPosition: "center right" }}
+          style={{ objectFit: "cover", objectPosition: "center" }}
         />
         <div
           className="absolute inset-0"
@@ -75,21 +71,12 @@ export default function Manifesto() {
         className="relative mx-auto flex min-h-[82vh] max-w-[88rem] flex-col justify-center"
         style={{ paddingInline: "var(--outer-margin)" }}
       >
-        {LINHAS.map((linha, i) => (
-          <p
-            key={linha}
-            className="t-h2 max-w-[20ch]"
-            style={{
-              color: "rgb(var(--navy))",
-              marginBlock: "0.15em",
-              opacity: visivel ? 1 : 0,
-              transform: visivel ? "translateY(0)" : "translateY(20px)",
-              transition: `opacity 400ms cubic-bezier(.23,1,.32,1) ${i * 120}ms, transform 400ms cubic-bezier(.23,1,.32,1) ${i * 120}ms`,
-            }}
-          >
-            {linha}
-          </p>
-        ))}
+        {/* O texto vem QUEIMADO na arte que o Eric montou, então não se
+            repete aqui — duas vezes a mesma frase lê como erro. O custo é
+            real e está registrado: texto em imagem não reflui no celular e
+            leitor de tela não alcança. Por isso a frase segue no aria-label
+            da seção, e a versão sem texto queimado continua sendo o certo
+            quando der tempo. */}
       </div>
     </section>
   );
