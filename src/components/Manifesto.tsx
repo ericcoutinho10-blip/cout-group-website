@@ -4,13 +4,12 @@ import { useEffect, useRef, useState } from "react";
 
 /* Capítulo 06 do briefing. Frases curtas, muito espaço, nenhuma explicação.
  * Cada linha entra sozinha — a pausa entre elas é o conteúdo. */
+// Copy definida pelo Eric em 06/08/2026, no lugar do "Nós não construímos
+// tecnologia / Pessoas constroem tecnologia...". Uma frase só: o manifesto
+// ganha peso por ficar sozinho na tela, não por acumular linhas.
 const LINHAS = [
-  "Nós não construímos tecnologia.",
-  "Pessoas constroem tecnologia.",
-  "A tecnologia deve desaparecer.",
-  "As pessoas devem aparecer.",
-  "O futuro não espera.",
-  "Ele é construído.",
+  "Um toque especial de quem",
+  "domina a tecnologia com excelência.",
 ];
 
 export default function Manifesto() {

@@ -33,21 +33,30 @@ export default function About() {
     <section id="about" className="bg-white">
       <div ref={ref} className="max-w-[88rem] mx-auto px-5 sm:px-8 grid grid-cols-1 lg:grid-cols-2 items-center gap-12 py-20 lg:py-28">
         {/* Coluna esquerda */}
-        <div className="relative min-h-56 lg:min-h-80">
-          {/* Sem ícone de fundo: o globo era enfeite genérico. Fundo branco. */}
-
-          {/* Eyebrow */}
+        {/* Coluna esquerda: a imagem que o Eric mandou, no lugar do antigo
+            globo. Ela carrega a ideia melhor do que qualquer icone — o
+            humanoide e a pessoa encaixando a mesma peca. */}
+        <div className="relative">
           <div
-            className="relative flex items-center gap-2 text-sm font-medium mb-4"
+            className="flex items-center gap-2 text-sm font-medium mb-5"
             style={{ color: "rgba(31,41,55,0.7)" }}
           >
             <span className="inline-block rounded-full" style={{ width: "0.375rem", height: "0.375rem", background: "rgba(31,41,55,0.5)" }}/>
             Quem Somos
           </div>
-
-          {/* O globo e "um time distribuído em todos os fusos horários"
-              saíram: ícone genérico que não diz nada sobre a COUT, e uma
-              frase que descreve trabalho remoto, não o que a empresa faz. */}
+          <div className="overflow-hidden rounded-[1.25rem]">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/arte/quem-somos.webp`}
+              alt=""
+              loading="lazy"
+              decoding="async"
+              width={934}
+              height={1200}
+              className="w-full"
+              style={{ aspectRatio: "1 / 1", objectFit: "cover" }}
+            />
+          </div>
         </div>
 
         {/* Coluna direita — statement */}

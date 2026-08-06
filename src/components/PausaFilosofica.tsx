@@ -81,6 +81,25 @@ export default function PausaFilosofica() {
         {frases.map((f, i) => (
           <FraseReveal key={i} {...f} delay={i * 150} />
         ))}
+
+        {/* A arte fecha a Cultura. Sangra para fora da margem porque imagem
+            contida em coluna lê como ilustração; sangrando, lê como cena. */}
+        <div
+          className="w-full overflow-hidden rounded-[1.25rem]"
+          style={{ marginTop: "var(--s-h-space)" }}
+        >
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/arte/cultura.webp`}
+            alt=""
+            loading="lazy"
+            decoding="async"
+            width={1800}
+            height={763}
+            className="w-full"
+            style={{ objectFit: "cover" }}
+          />
+        </div>
       </div>
     </section>
   );
