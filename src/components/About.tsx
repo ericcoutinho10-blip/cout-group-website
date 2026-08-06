@@ -52,12 +52,21 @@ export default function About() {
               loading="lazy"
               decoding="async"
               width={934}
-              height={1200}
+              height={1168}
               className="w-full"
               /* O SVG traz uma borda escura de 1px no proprio arquivo. Um
                  zoom de 3% empurra essa borda para fora do quadro — mais
                  barato e mais fiel do que reprocessar a imagem. */
-              style={{ aspectRatio: "1 / 1", objectFit: "cover", transform: "scale(1.03)" }}
+              style={{
+                aspectRatio: "4 / 5",
+                objectFit: "cover",
+                /* `objectPosition` desce o recorte: com `center` o zoom de 3%
+                   cortava o topo da cabeca do humanoide. 32% mantem o zoom
+                   que esconde a borda do SVG e ainda enquadra cabecas,
+                   bracos e a peca de quebra-cabeca. */
+                objectPosition: "center 32%",
+                transform: "scale(1.03)",
+              }}
             />
           </div>
         </div>
