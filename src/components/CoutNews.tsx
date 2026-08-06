@@ -133,7 +133,12 @@ export default function CoutNews() {
             width={2400}
             height={1018}
             className="w-full"
-            style={{ aspectRatio: "21 / 9", objectFit: "cover" }}
+            /* Sem proporcao fixa e sem `cover`: a imagem aparece INTEIRA, na
+               largura da tela, e a altura vem da propria imagem. `cover` com
+               21/9 recortava as bordas para caber na caixa — o oposto do que
+               uma capa editorial precisa. Imagem horizontal ja sangra de
+               ponta a ponta sozinha. */
+            style={{ display: "block", height: "auto" }}
           />
         </div>
         <div className="mt-10 grid gap-x-[clamp(2rem,6vw,5rem)] gap-y-4 lg:grid-cols-[1.1fr_1fr]">
