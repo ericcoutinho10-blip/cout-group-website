@@ -8,30 +8,34 @@ interface FooterProps {
   onScrollTo: (id: string) => void;
 }
 
+/* Todo item leva a um destino que existe. A lista anterior apontava para
+   #services (secao que nao existe mais), #modal (formulario removido) e
+   href="#" nas redes, que nao levava a lugar nenhum. Link que nao leva a
+   nada e pior do que link ausente: quebra a confianca no resto. */
 const cols = [
   {
     title: "Empresa",
     links: [
-      { label: "Sobre nós", href: "#quem-somos" },
+      { label: "Quem Somos", href: "#quem-somos" },
+      { label: "Cultura", href: "#cultura" },
       { label: "COUT NEWS", href: "#cout-news" },
-      { label: "Contato", href: "#modal" },
     ],
   },
   {
-    title: "Produtos",
+    title: "Infraestrutura",
     links: [
-      { label: "COUT OS", href: "#infraestrutura" },
-      { label: "Agentes de IA", href: "#services" },
-      { label: "Automação", href: "#services" },
-      { label: "HealthOS", href: "#services" },
+      { label: "CRM", href: "#infraestrutura" },
+      { label: "Dashboard", href: "#infraestrutura" },
+      { label: "Agentes de IA", href: "#infraestrutura" },
+      { label: "Growth Analytics", href: "#infraestrutura" },
+      { label: "Comunicação", href: "#infraestrutura" },
     ],
   },
   {
-    title: "Social",
+    title: "Falar com a COUT",
     links: [
-      { label: "LinkedIn", href: "#" },
-      { label: "Instagram", href: "#" },
-      { label: "WhatsApp", href: "#" },
+      { label: "WhatsApp", href: "https://wa.me/5511949545284", externo: true },
+      { label: "Entre em contato", href: "#contato" },
     ],
   },
 ];
@@ -116,12 +120,23 @@ export default function Footer({ onOpenModal, onScrollTo }: FooterProps) {
               <ul className="flex flex-col gap-3">
                 {col.links.map((link) => (
                   <li key={link.label}>
-                    <button
-                      onClick={() => link.href === "#modal" ? onOpenModal() : onScrollTo(link.href.slice(1))}
-                      className="text-sm transition-all duration-200 hover:translate-x-1 hover:opacity-100 opacity-65 text-left"
-                    >
-                      {link.label}
-                    </button>
+                    {"externo" in link && link.externo ? (
+                      <a
+                        href={link.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-sm opacity-65 transition-all duration-200 hover:translate-x-1 hover:opacity-100 inline-block"
+                      >
+                        {link.label}
+                      </a>
+                    ) : (
+                      <button
+                        onClick={() => onScrollTo(link.href.slice(1))}
+                        className="text-sm transition-all duration-200 hover:translate-x-1 hover:opacity-100 opacity-65 text-left"
+                      >
+                        {link.label}
+                      </button>
+                    )}
                   </li>
                 ))}
               </ul>
