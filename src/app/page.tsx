@@ -13,10 +13,10 @@ import CreateBand from "@/components/CreateBand";
 import Services from "@/components/Services";
 import CoutNews from "@/components/CoutNews";
 import Fechamento from "@/components/Fechamento";
+import Concierge from "@/components/Concierge";
 import Stats from "@/components/Stats";
 import Footer from "@/components/Footer";
 import NavMenu from "@/components/NavMenu";
-import RequestModal from "@/components/RequestModal";
 
 /* ─────────────────────────────────────────────────────────────────────
  * DUAS CAMADAS
@@ -32,13 +32,12 @@ import RequestModal from "@/components/RequestModal";
 export default function Home() {
   const [ready, setReady] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [modalOpen, setModalOpen] = useState(false);
   const [universoAberto, setUniversoAberto] = useState(false);
   const universoRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    document.body.style.overflow = menuOpen || modalOpen ? "hidden" : "";
-  }, [menuOpen, modalOpen]);
+    document.body.style.overflow = menuOpen ? "hidden" : "";
+  }, [menuOpen]);
 
   /* Navegar para um destino do Universo abre a Camada 2 primeiro, se ainda
    * estiver fechada — é a saída de emergência para quem não quer o filme. */
@@ -52,9 +51,12 @@ export default function Home() {
     });
   }, []);
 
+  /* Todo CTA do site abre o atendimento, não mais o formulário de e-mail.
+     O Eric foi direto: "nada de e-mail, velho ultrapassado, tudo via
+     WhatsApp". A conversa faz a triagem e entrega o contexto pronto. */
   const openModal = useCallback(() => {
     setMenuOpen(false);
-    setTimeout(() => setModalOpen(true), 100);
+    setTimeout(() => window.dispatchEvent(new Event("cout:atendimento")), 100);
   }, []);
 
   /* Abrir o Universo cresce o documento. O ScrollTrigger e o Lenis guardam
@@ -122,7 +124,9 @@ export default function Home() {
         onOpenModal={openModal}
         onScrollTo={irPara}
       />
-      <RequestModal open={modalOpen} onClose={() => setModalOpen(false)} />
+
+      {/* A COUT atendendo pelo próprio site, em vez de formulário de e-mail. */}
+      <Concierge />
     </>
   );
 }
