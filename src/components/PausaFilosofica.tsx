@@ -1,5 +1,7 @@
 "use client";
 
+import { V } from "@/lib/versao";
+
 import { useEffect, useRef, useState } from "react";
 
 /* A pausa é o único lugar do site em serifa. É o papel que no sistema do
@@ -103,7 +105,7 @@ export default function PausaFilosofica() {
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/arte/cultura.webp`}
+            src={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/arte/cultura.webp?${V}`}
             alt=""
             loading="lazy"
             decoding="async"

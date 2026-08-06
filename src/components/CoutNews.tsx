@@ -1,5 +1,7 @@
 "use client";
 
+import { V } from "@/lib/versao";
+
 import { useEffect, useRef, useState } from "react";
 
 const BASE = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
@@ -128,7 +130,7 @@ export default function CoutNews() {
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src={`${BASE}/news/capa.webp`}
+            src={`${BASE}/news/capa.webp?${V}`}
             alt=""
             loading="lazy"
             decoding="async"

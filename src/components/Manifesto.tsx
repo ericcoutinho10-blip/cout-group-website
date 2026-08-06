@@ -1,5 +1,7 @@
 "use client";
 
+import { V } from "@/lib/versao";
+
 import { useEffect, useRef, useState } from "react";
 
 /* Capítulo 06 do briefing. Frases curtas, muito espaço, nenhuma explicação.
@@ -51,10 +53,10 @@ export default function Manifesto() {
       <div className="absolute inset-0">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/arte/mao-humanoide.webp`}
+          src={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/arte/manifesto-fundo.webp?${V}`}
           alt=""
-          width={2400}
-          height={1018}
+          width={2560}
+          height={1433}
           className="h-full w-full"
           style={{ objectFit: "cover", objectPosition: "center" }}
         />

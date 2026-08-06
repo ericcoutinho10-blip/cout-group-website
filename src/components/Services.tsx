@@ -1,5 +1,7 @@
 "use client";
 
+import { V } from "@/lib/versao";
+
 import { useEffect, useRef, useState } from "react";
 
 // Os cinco vieram do mockup do Canva (Eric, 05/08/2026). Grafia corrigida:
@@ -184,7 +186,7 @@ export default function Services() {
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/produtos/${aberto.arte}.webp`}
+                src={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/produtos/${aberto.arte}.webp?${V}`}
                 alt=""
                 width={1920}
                 height={1080}

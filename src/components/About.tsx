@@ -1,5 +1,7 @@
 "use client";
 
+import { V } from "@/lib/versao";
+
 import { useEffect, useRef, useState } from "react";
 
 export default function About() {
@@ -47,7 +49,7 @@ export default function About() {
           <div className="overflow-hidden rounded-[1.25rem]">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/arte/quem-somos.webp`}
+              src={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/arte/quem-somos.webp?${V}`}
               alt=""
               loading="lazy"
               decoding="async"
