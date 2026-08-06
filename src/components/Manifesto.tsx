@@ -73,7 +73,7 @@ export default function Manifesto() {
             tela alcanca — o que texto queimado na imagem nao faz. A arte
             usada e a versao sem texto, para nao duplicar. */}
         <p
-          className="t-h2 mx-auto max-w-[min(94vw,46rem)] pb-[8vh] text-center [hyphens:none]"
+          className="t-h2 mx-auto max-w-[min(96vw,64rem)] pb-[8vh] text-center [hyphens:none]"
           style={{
             color: "rgb(var(--navy))",
             opacity: visivel ? 1 : 0,
