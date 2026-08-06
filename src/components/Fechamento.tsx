@@ -18,7 +18,7 @@ const ORGANIZACOES = [
   "Iman Hammoud",
 ] as const;
 
-export default function Fechamento({ onOpenModal }: { onOpenModal: () => void }) {
+export default function Fechamento() {
   const ref = useRef<HTMLElement>(null);
   const [visivel, setVisivel] = useState(false);
 
@@ -56,25 +56,10 @@ export default function Fechamento({ onOpenModal }: { onOpenModal: () => void })
         Vamos construir algo único.
       </h2>
 
-      <button
-        onClick={onOpenModal}
-        className="mt-12 rounded-full border border-white/30 px-9 py-4 text-[0.95rem] text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white/60"
-        style={{
-          ...surge(90),
-          transition:
-            "opacity 400ms cubic-bezier(.23,1,.32,1) 90ms, transform 400ms cubic-bezier(.23,1,.32,1) 90ms, background-color 400ms cubic-bezier(.23,1,.32,1), border-color 400ms cubic-bezier(.23,1,.32,1)",
-        }}
-        onMouseEnter={(e) => {
-          e.currentTarget.style.borderColor = "rgba(255,255,255,0.7)";
-          e.currentTarget.style.backgroundColor = "rgba(255,255,255,0.06)";
-        }}
-        onMouseLeave={(e) => {
-          e.currentTarget.style.borderColor = "rgba(255,255,255,0.3)";
-          e.currentTarget.style.backgroundColor = "transparent";
-        }}
-      >
-        Falar com um especialista
-      </button>
+      {/* O botao saiu daqui. Media contraste quase nulo — escuro sobre
+          escuro — e era redundante: o "Falar com a COUT" flutua na tela o
+          tempo todo e faz a mesma coisa. Dois CTAs disputando a mesma
+          intencao e pior do que um. A cor fica so no atendimento. */}
 
       {/* A prova, sussurrada: só os nomes. Sem logo, sem métrica, sem elogio —
           quem reconhece, reconhece; quem não reconhece não é atrapalhado. */}

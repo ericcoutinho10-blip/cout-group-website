@@ -103,7 +103,7 @@ export default function Home() {
             <div id="infraestrutura"><Services /></div>
             <div id="cout-news"><CoutNews /></div>
             <Stats />
-            <Fechamento onOpenModal={openModal} />
+            <Fechamento />
           </div>
         )}
       </main>
