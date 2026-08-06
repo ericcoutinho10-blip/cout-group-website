@@ -28,7 +28,7 @@ const services: Service[] = [
     desc: "Cada interação acontece automaticamente no momento certo, pelo canal certo e para a pessoa certa." },
 ];
 
-function ServiceRow({ s, delay, visible }: { s: typeof services[0]; delay: number; visible: boolean }) {
+function ServiceRow({ s, delay, visible, onAbrir }: { s: Service; delay: number; visible: boolean; onAbrir: (s: Service) => void }) {
   const [hovered, setHovered] = useState(false);
 
   return (
@@ -43,8 +43,14 @@ function ServiceRow({ s, delay, visible }: { s: typeof services[0]; delay: numbe
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
-      <div
-        className="flex items-center gap-4 sm:gap-6 rounded-[1.25rem] py-6 sm:py-8 transition-[background,padding] duration-300"
+      {/* A linha inteira e o alvo do clique, nao so a seta — alvo pequeno em
+          lista larga faz a pessoa errar. Botao, nao div, para o teclado
+          chegar aqui tambem. */}
+      <button
+        type="button"
+        onClick={() => onAbrir(s)}
+        aria-label={`Ver ${s.title}`}
+        className="w-full text-left flex items-center gap-4 sm:gap-6 rounded-[1.25rem] py-6 sm:py-8 transition-[background,padding] duration-300"
         style={{
           paddingInline: hovered ? "2rem" : "1.5rem",
           background: hovered ? "rgba(247,249,252,1)" : "rgba(247,249,252,0)",
@@ -90,7 +96,7 @@ function ServiceRow({ s, delay, visible }: { s: typeof services[0]; delay: numbe
             <path d="M7 17 17 7M8 7h9v9"/>
           </svg>
         </span>
-      </div>
+      </button>
     </li>
   );
 }
@@ -98,6 +104,13 @@ function ServiceRow({ s, delay, visible }: { s: typeof services[0]; delay: numbe
 export default function Services() {
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
+  const [aberto, setAberto] = useState<Service | null>(null);
+
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setAberto(null);
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, []);
 
   useEffect(() => {
     const el = ref.current;
@@ -149,9 +162,57 @@ export default function Services() {
 
         <ul>
           {services.map((s, i) => (
-            <ServiceRow key={s.idx} s={s} delay={i * 80} visible={visible} />
+            <ServiceRow onAbrir={setAberto} key={s.idx} s={s} delay={i * 80} visible={visible} />
           ))}
         </ul>
+
+        {/* Lightbox. Fecha no Esc, no fundo e no botao — quem abriu por
+            engano precisa de tres saidas obvias, nao uma. */}
+        {aberto && (
+          <div
+            role="dialog"
+            aria-modal="true"
+            aria-label={aberto.title}
+            onClick={() => setAberto(null)}
+            className="fixed inset-0 z-[80] grid place-items-center p-[var(--outer-margin)]"
+            style={{ background: "rgb(15 37 64 / 0.72)", backdropFilter: "blur(6px)" }}
+          >
+            <figure
+              onClick={(e) => e.stopPropagation()}
+              className="w-full max-w-[min(92vw,72rem)] overflow-hidden rounded-[1.5rem]"
+              style={{ background: "#fff" }}
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/produtos/${aberto.arte}.webp`}
+                alt=""
+                width={1920}
+                height={1080}
+                className="w-full"
+                style={{ aspectRatio: "16 / 9", objectFit: "cover" }}
+              />
+              <figcaption className="flex items-start justify-between gap-6 p-6 sm:p-8">
+                <div>
+                  <p className="t-label" style={{ color: "rgba(31,41,55,0.5)" }}>{aberto.idx}</p>
+                  <h3 className="t-h3 mt-1">{aberto.title}</h3>
+                  <p className="t-body mt-2 max-w-[52ch]" style={{ color: "rgba(31,41,55,0.7)" }}>
+                    {aberto.desc}
+                  </p>
+                </div>
+                <button
+                  onClick={() => setAberto(null)}
+                  aria-label="Fechar"
+                  className="shrink-0 grid place-items-center rounded-full"
+                  style={{ width: "2.5rem", height: "2.5rem", background: "#0F2540", color: "#fff" }}
+                >
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+                    <path d="M6 6l12 12M18 6L6 18" />
+                  </svg>
+                </button>
+              </figcaption>
+            </figure>
+          </div>
+        )}
       </div>
     </section>
   );

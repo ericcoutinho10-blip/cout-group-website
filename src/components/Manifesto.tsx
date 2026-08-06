@@ -40,54 +40,56 @@ export default function Manifesto() {
     <section
       id="manifesto"
       ref={ref}
-      className="bg-cout-navy"
-      style={{ paddingBlock: "var(--l-h-space)" }}
+      className="relative overflow-hidden bg-white"
       aria-label="Manifesto"
     >
+      {/* A arte OCUPA a seção inteira e a frase vive dentro dela — era o
+          contrário: navy com o texto e a imagem pendurada embaixo. Imagem
+          de fundo com texto por cima é o que o Eric pediu e é o que dá
+          escala; imagem abaixo do texto lê como anexo.
+
+          A arte é clara, então o texto volta a ser navy e ganha uma queda
+          de luz suave à esquerda para garantir leitura sobre a área mais
+          clara do quadro. Sem caixa e sem sombra dura: o mesmo princípio
+          do filme. */}
+      <div className="absolute inset-0">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/arte/mao-humanoide.webp`}
+          alt=""
+          width={2400}
+          height={1018}
+          className="h-full w-full"
+          style={{ objectFit: "cover", objectPosition: "center right" }}
+        />
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "radial-gradient(85% 90% at 8% 45%, rgb(255 255 255 / 0.92) 0%, rgb(255 255 255 / 0.55) 45%, rgb(255 255 255 / 0) 78%)",
+          }}
+        />
+      </div>
+
       <div
-        className="mx-auto max-w-[88rem]"
+        className="relative mx-auto flex min-h-[82vh] max-w-[88rem] flex-col justify-center"
         style={{ paddingInline: "var(--outer-margin)" }}
       >
         {LINHAS.map((linha, i) => (
           <p
             key={linha}
-            className="t-h2 text-white"
+            className="t-h2 max-w-[20ch]"
             style={{
-              marginBlock: "var(--s-h-space)",
+              color: "rgb(var(--navy))",
+              marginBlock: "0.15em",
               opacity: visivel ? 1 : 0,
-              transform: visivel ? "translateY(0)" : "translateY(14px)",
-              transition: `opacity 1100ms cubic-bezier(0.22,1,0.36,1) ${i * 260}ms, transform 1100ms cubic-bezier(0.22,1,0.36,1) ${i * 260}ms`,
+              transform: visivel ? "translateY(0)" : "translateY(20px)",
+              transition: `opacity 400ms cubic-bezier(.23,1,.32,1) ${i * 120}ms, transform 400ms cubic-bezier(.23,1,.32,1) ${i * 120}ms`,
             }}
           >
             {linha}
           </p>
         ))}
-
-        {/* A mão do humanoide fecha o manifesto. Ela vem de fundo claro, então
-            entra em `mix-blend-mode: screen` sobre o navy: o branco da arte
-            vira luz e o fundo dela some, em vez de virar um retângulo claro
-            colado no meio da seção. */}
-        <div
-          className="w-full overflow-hidden"
-          style={{ marginTop: "var(--m-h-space)" }}
-        >
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/arte/mao-humanoide.webp`}
-            alt=""
-            loading="lazy"
-            decoding="async"
-            width={2400}
-            height={1018}
-            className="w-full"
-            style={{
-              mixBlendMode: "screen",
-              opacity: visivel ? 0.9 : 0,
-              transform: visivel ? "translateY(0)" : "translateY(20px)",
-              transition: "opacity 400ms cubic-bezier(.23,1,.32,1) .3s, transform 400ms cubic-bezier(.23,1,.32,1) .3s",
-            }}
-          />
-        </div>
       </div>
     </section>
   );
