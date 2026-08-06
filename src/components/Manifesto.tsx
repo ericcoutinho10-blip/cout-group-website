@@ -75,8 +75,14 @@ export default function Manifesto() {
             tela alcanca — o que texto queimado na imagem nao faz. A arte
             usada e a versao sem texto, para nao duplicar. */}
         <p
-          className="t-h2 mx-auto max-w-[min(96vw,64rem)] pb-[8vh] text-center [hyphens:none]"
+          className="mx-auto max-w-[min(96vw,52rem)] pb-[4vh] text-center [hyphens:none]"
           style={{
+            /* Menor e mais embaixo: o braco escuro da arte cruza a altura em
+               que o texto estava, e navy sobre navy some. Aqui ele pousa na
+               faixa clara do rodape da imagem, onde o contraste e alto. */
+            fontSize: "clamp(1.35rem, 2.6vw, 2.35rem)",
+            lineHeight: 1.25,
+            fontWeight: 300,
             color: "rgb(var(--navy))",
             opacity: visivel ? 1 : 0,
             transform: visivel ? "translateY(0)" : "translateY(20px)",
