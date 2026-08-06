@@ -239,7 +239,7 @@ export default function ScrollFilm({
       const st = ScrollTrigger.create({
         trigger: section,
         start: "top top",
-        end: () => `+=${window.innerHeight * 6}`,
+        end: () => `+=${window.innerHeight * 3}`,
         pin: ".film-stage",
         pinSpacing: true,
         scrub: 0.8,
