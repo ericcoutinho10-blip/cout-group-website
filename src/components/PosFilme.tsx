@@ -14,11 +14,6 @@ import { useEffect, useRef, useState } from "react";
  * pode aparecer antes de a pausa terminar.
  * ──────────────────────────────────────────────────────────────────── */
 
-const ORGANIZACOES = [
-  "Dr. Hussein Awada",
-  "Indústrias Suavetex",
-  "Iman Hammoud",
-];
 
 export default function PosFilme({ onAbrir }: { onAbrir: () => void }) {
   const ref = useRef<HTMLElement>(null);
@@ -100,11 +95,15 @@ export default function PosFilme({ onAbrir }: { onAbrir: () => void }) {
         }}
       />
 
+      {/* "Vamos construir algo único." e as organizações mudaram para o FIM
+          do site (componente Fechamento), como o Eric pediu — no mockup do
+          Canva elas fecham a página, não abrem o conteúdo. Aqui fica só a
+          passagem: a pausa e o convite para continuar. */}
       <p
         className="t-h2 mt-10 text-white"
         style={surge(fase >= 2)}
       >
-        Vamos construir algo único.
+        Há mais para ver.
       </p>
 
       <button
@@ -115,22 +114,6 @@ export default function PosFilme({ onAbrir }: { onAbrir: () => void }) {
         Começar
       </button>
 
-      {/* a prova, sussurrada: só os nomes, sem logo, sem métrica, sem elogio */}
-      <div
-        className="absolute inset-x-0 bottom-[7vh]"
-        style={{ ...surge(fase >= 3, 900), paddingInline: "var(--outer-margin)" }}
-      >
-        <p className="t-label text-white/35">
-          Algumas organizações que confiaram na COUT
-        </p>
-        <ul className="mt-4 flex flex-wrap items-center justify-center gap-x-10 gap-y-2">
-          {ORGANIZACOES.map((nome) => (
-            <li key={nome} className="t-body font-light text-white/55">
-              {nome}
-            </li>
-          ))}
-        </ul>
-      </div>
     </section>
   );
 }

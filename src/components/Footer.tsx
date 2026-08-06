@@ -140,13 +140,8 @@ export default function Footer({ onOpenModal, onScrollTo }: FooterProps) {
         </div>
       </div>
 
-      {/* Watermark */}
-      <div
-        className="absolute inset-x-0 -bottom-6 z-0 text-center pointer-events-none select-none font-semibold leading-none"
-        style={{ fontSize: "13rem", color: "rgba(255,255,255,0.04)" }}
-      >
-        COUT
-      </div>
+      {/* A marca d'água gigante saiu: era ornamento, não informação, e
+          suja o fundo do rodapé. A marca já se apresenta no header. */}
     </footer>
   );
 }

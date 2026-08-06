@@ -31,7 +31,7 @@ type Beat = {
   bottomAlign?: "left" | "right";
   /** lista vertical (pilares), entra abaixo da metade de cima */
   list?: string[];
-  /** hero: tipografia maior e palavra de destaque em azul */
+  /** hero: tipografia maior (a abertura) */
   hero?: boolean;
   accent?: string;
 };
@@ -49,78 +49,62 @@ const BEATS: Beat[] = [
     from: 0.004,
     to: 0.058,
     hero: true,
-    // Quebra em três linhas e ponto de exclamação vêm do mockup do Canva.
-    // Sem `accent`: lá o "AGORA!" é branco como o resto. O azul competia
-    // com a palavra em vez de sustentá-la — a força está no tamanho e no
-    // ponto final, não na cor.
     top: ["O futuro da sua", "empresa começa", "AGORA!"],
   },
   {
     // a mesa tomada por notificações
     from: 0.09,
     to: 0.15,
-    top: ["Entre um paciente", "e o próximo…"],
-    bottom: ["…ainda existe uma pilha de tarefas", "que ninguém escolheu fazer."],
+    top: ["Entre um paciente e", "o próximo ainda", "existe uma pilha de", "tarefas que ninguém", "escolheu fazer."],
   },
   {
     // ele levanta os olhos para a janela
     from: 0.182,
     to: 0.208,
-    top: ["E se houvesse", "uma infraestrutura…"],
-    bottom: ["…pensada para resolver isso?"],
+    top: ["E se houvesse uma", "infraestrutura pensada", "para resolver isso?"],
   },
   {
     // as mãos se tocam — o ponto de virada
     from: 0.23,
     to: 0.268,
-    top: ["Decisões que geram…"],
-    bottom: ["…emoções e conexões reais."],
+    top: ["Decisões que geram", "emoções e conexões reais."],
   },
   {
     // a IA contemplando a cidade
     from: 0.3,
     to: 0.352,
-    top: ["Não é sobre uma ferramenta."],
-    bottom: ["É sobre infraestrutura e tecnologia."],
+    top: ["Não é sobre uma ferramenta.", "É sobre infraestrutura", "e tecnologia."],
   },
   {
     // a IA no painel e na recepção
     from: 0.384,
     to: 0.436,
-    top: ["Invisível, silenciosa, inteligente."],
-    bottom: ["Trabalhando enquanto", "você cuida de pessoas."],
-    bottomAlign: "left",
+    top: ["Invisível, silenciosa,", "inteligente. Trabalhando", "enquanto você cuida de", "pessoas."],
   },
   {
     // hall, whatsapp respondendo sozinho, a IA apresentando resultados
     from: 0.468,
     to: 0.63,
-    top: ["Construímos previsibilidade com…"],
+    top: ["Construímos", "previsibilidade com…"],
     list: ["Comunicação", "Gestão", "Organização", "Análise & dados"],
   },
   {
     // a recepcionista presente, sem tela entre ela e a paciente
     from: 0.662,
     to: 0.7,
-    top: ["Não substituímos humanos…"],
-    bottom: ["…potencializamos o trabalho deles."],
-    bottomAlign: "left",
+    top: ["Não substituímos humano", "potencializamos o", "trabalho deles."],
   },
   {
     // o médico saindo no fim de tarde
     from: 0.724,
     to: 0.754,
-    top: ["E você volta a ser…"],
-    bottom: ["…quem sempre quis ser."],
-    bottomAlign: "left",
+    top: ["E você volta a ser", "quem sempre quis ser."],
   },
   {
     // o campus visto de cima, em golden hour
     from: 0.788,
     to: 0.812,
-    top: ["A melhor tecnologia"],
-    bottom: ["é aquela que opera em silêncio."],
-    bottomAlign: "left",
+    top: ["A melhor tecnologia", "é aquela que", "opera em silêncio."],
   },
 ];
 
@@ -428,7 +412,7 @@ export default function ScrollFilm({
               />
 
               {/* metade de cima */}
-              <div className="absolute left-0 top-[12%] w-full max-w-[min(92vw,66rem)] px-6 text-left sm:px-12 lg:px-20">
+              <div className="absolute left-0 top-[22%] w-full max-w-[min(92vw,72rem)] px-6 text-left sm:px-12 lg:px-20">
                 {b.top && b.top.map((line, j) => (
                   <p key={j} className={base} style={fluid}>
                     {render(line)}

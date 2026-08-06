@@ -33,14 +33,23 @@ interface HeaderProps {
 
 export default function Header({ ready, onOpenMenu, onIrPara }: HeaderProps) {
   const [sobreClaro, setSobreClaro] = useState(false);
+  const [escondido, setEscondido] = useState(false);
 
   /* Mede por posição de scroll, não por IntersectionObserver: o observer não
    * entrega callback em aba de segundo plano, e aqui errar significa texto
    * invisível. */
   useEffect(() => {
+    let ultimoY = 0;
     const medir = () => {
       const universo = document.getElementById("universo");
       setSobreClaro(!!universo && universo.getBoundingClientRect().top <= 80);
+
+      /* A barra some ao descer e volta ao subir. Some só depois de 120px,
+       * senão pisca em rolagem curta; e volta inteira ao primeiro gesto para
+       * cima, que é quando a pessoa está procurando navegação. */
+      const y = window.scrollY;
+      setEscondido(y > 120 && y > ultimoY);
+      ultimoY = y;
     };
     medir();
     window.addEventListener("scroll", medir, { passive: true });
@@ -63,10 +72,11 @@ export default function Header({ ready, onOpenMenu, onIrPara }: HeaderProps) {
     <header
       className="fixed inset-x-0 top-0 z-50"
       style={{
-        opacity: ready ? 1 : 0,
-        transform: ready ? "translateY(0)" : "translateY(-14px)",
+        opacity: ready && !escondido ? 1 : 0,
+        transform: ready && !escondido ? "translateY(0)" : "translateY(-110%)",
+        pointerEvents: escondido ? "none" : "auto",
         transition:
-          "opacity 0.7s cubic-bezier(0.22,1,0.36,1) 0.15s, transform 0.7s cubic-bezier(0.22,1,0.36,1) 0.15s",
+          "opacity 400ms cubic-bezier(.23,1,.32,1), transform 400ms cubic-bezier(.23,1,.32,1)",
       }}
     >
       {/* UMA pílula só, como no mockup do Canva: menu, destinos e a marca

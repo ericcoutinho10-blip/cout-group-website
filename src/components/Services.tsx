@@ -114,7 +114,7 @@ export default function Services() {
           style={{ color: "rgba(31,41,55,0.7)" }}
         >
           <span className="inline-block rounded-full" style={{ width: "0.375rem", height: "0.375rem", background: "rgba(31,41,55,0.5)" }}/>
-          Produtos
+          Infraestrutura
         </div>
 
         <div className="overflow-hidden mb-12 sm:mb-14">
@@ -127,7 +127,7 @@ export default function Services() {
               transition: "opacity 900ms cubic-bezier(0.215,0.61,0.355,1) 0.12s, transform 900ms cubic-bezier(0.215,0.61,0.355,1) 0.12s",
             }}
           >
-            O que fazemos de melhor
+            O que construímos
           </h2>
         </div>
 

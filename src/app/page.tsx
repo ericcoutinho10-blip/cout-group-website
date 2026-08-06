@@ -12,6 +12,7 @@ import PausaFilosofica from "@/components/PausaFilosofica";
 import CreateBand from "@/components/CreateBand";
 import Services from "@/components/Services";
 import CoutNews from "@/components/CoutNews";
+import Fechamento from "@/components/Fechamento";
 import Stats from "@/components/Stats";
 import Footer from "@/components/Footer";
 import NavMenu from "@/components/NavMenu";
@@ -102,6 +103,7 @@ export default function Home() {
             <div id="infraestrutura"><Services /></div>
             <div id="cout-news"><CoutNews /></div>
             <Stats />
+            <Fechamento onOpenModal={openModal} />
           </div>
         )}
       </main>
