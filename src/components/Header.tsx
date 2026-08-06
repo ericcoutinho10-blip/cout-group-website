@@ -41,8 +41,19 @@ export default function Header({ ready, onOpenMenu, onIrPara }: HeaderProps) {
   useEffect(() => {
     let ultimoY = 0;
     const medir = () => {
-      const universo = document.getElementById("universo");
-      setSobreClaro(!!universo && universo.getBoundingClientRect().top <= 80);
+      /* Mede TODAS as superficies claras, nao so o Universo. A dobradiga
+         virou branca; medir so o #universo deixaria o header branco sobre
+         branco ali — o mesmo defeito de 1,04:1 de contraste que ja tinha
+         acontecido antes. Claro se qualquer uma delas estiver sob o header. */
+      const claros = ["pos-filme", "universo"]
+        .map((id) => document.getElementById(id))
+        .filter(Boolean) as HTMLElement[];
+      setSobreClaro(
+        claros.some((el) => {
+          const r = el.getBoundingClientRect();
+          return r.top <= 80 && r.bottom > 80;
+        }),
+      );
 
       /* A barra some ao descer e volta ao subir. Some só depois de 120px,
        * senão pisca em rolagem curta; e volta inteira ao primeiro gesto para

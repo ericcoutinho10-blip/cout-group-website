@@ -82,14 +82,15 @@ export default function PosFilme({ onAbrir }: { onAbrir: () => void }) {
   return (
     <section
       ref={ref}
-      className="relative flex min-h-[72vh] flex-col items-center justify-center bg-cout-navy px-[var(--outer-margin)] py-[clamp(5rem,12vh,8rem)] text-center"
+      id="pos-filme"
+      className="relative flex min-h-[72vh] flex-col items-center justify-center bg-white px-[var(--outer-margin)] py-[clamp(5rem,12vh,8rem)] text-center"
       style={{ paddingInline: "var(--outer-margin)" }}
       aria-label="Depois do filme"
     >
       {/* a linha — 1px, quase nada, mas é ela que anuncia que algo continua */}
       <div
         aria-hidden="true"
-        className="h-px bg-white/25"
+        className="h-px bg-cout-navy/20"
         style={{
           width: fase >= 1 ? "min(22rem, 60vw)" : "0rem",
           transition: "width 1400ms cubic-bezier(0.22,1,0.36,1)",
@@ -103,14 +104,18 @@ export default function PosFilme({ onAbrir }: { onAbrir: () => void }) {
       {/* A marca fecha o filme, como na tela do Canva. Antes esta tela tinha
           só uma linha e um botão em 100dvh — muito vazio para muito scroll.
           "Vamos construir algo único." não se repete aqui: ela fecha o site. */}
-      <div className="mt-12 text-white" style={surge(fase >= 2)}>
+      {/* Fundo branco com a marca em azul, como no PNG que o Eric mandou.
+          A MarcaCout usa mascara CSS: a cor vem do `text-` do pai, entao a
+          mesma imagem serve clara sobre o filme e azul sobre o branco —
+          nao existe um segundo arquivo para manter em sincronia. */}
+      <div className="mt-12 text-cout-navy" style={surge(fase >= 2)}>
         <MarcaCout altura="clamp(3rem, 7vw, 4.75rem)" />
         <p className="t-h3 mt-5 font-light">COUT OS</p>
       </div>
 
       <button
         onClick={onAbrir}
-        className="t-label mt-12 rounded-full border border-white/30 px-9 py-4 text-white transition-colors duration-500 hover:border-white/70 hover:bg-white/5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white/60"
+        className="t-label mt-12 rounded-full border border-cout-navy/30 px-9 py-4 text-cout-navy transition-colors duration-500 hover:border-cout-navy/70 hover:bg-cout-navy/5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cout-navy/60"
         style={{ ...surge(fase >= 3, 200), pointerEvents: fase >= 3 ? "auto" : "none" }}
       >
         Continuar
