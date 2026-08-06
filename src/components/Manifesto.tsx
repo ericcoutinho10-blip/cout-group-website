@@ -54,7 +54,7 @@ export default function Manifesto() {
             className="t-h2 text-white"
             style={{
               marginBlock: "var(--s-h-space)",
-              opacity: visivel ? (i >= 4 ? 1 : 0.72) : 0,
+              opacity: visivel ? 1 : 0,
               transform: visivel ? "translateY(0)" : "translateY(14px)",
               transition: `opacity 1100ms cubic-bezier(0.22,1,0.36,1) ${i * 260}ms, transform 1100ms cubic-bezier(0.22,1,0.36,1) ${i * 260}ms`,
             }}
@@ -62,6 +62,32 @@ export default function Manifesto() {
             {linha}
           </p>
         ))}
+
+        {/* A mão do humanoide fecha o manifesto. Ela vem de fundo claro, então
+            entra em `mix-blend-mode: screen` sobre o navy: o branco da arte
+            vira luz e o fundo dela some, em vez de virar um retângulo claro
+            colado no meio da seção. */}
+        <div
+          className="w-full overflow-hidden"
+          style={{ marginTop: "var(--m-h-space)" }}
+        >
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/arte/mao-humanoide.webp`}
+            alt=""
+            loading="lazy"
+            decoding="async"
+            width={2400}
+            height={1018}
+            className="w-full"
+            style={{
+              mixBlendMode: "screen",
+              opacity: visivel ? 0.9 : 0,
+              transform: visivel ? "translateY(0)" : "translateY(20px)",
+              transition: "opacity 400ms cubic-bezier(.23,1,.32,1) .3s, transform 400ms cubic-bezier(.23,1,.32,1) .3s",
+            }}
+          />
+        </div>
       </div>
     </section>
   );
