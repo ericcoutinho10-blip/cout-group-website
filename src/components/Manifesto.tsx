@@ -73,7 +73,7 @@ export default function Manifesto() {
             tela alcanca — o que texto queimado na imagem nao faz. A arte
             usada e a versao sem texto, para nao duplicar. */}
         <p
-          className="t-h2 mx-auto max-w-[24ch] pb-[8vh] text-center [text-wrap:balance]"
+          className="t-h2 mx-auto max-w-[min(94vw,46rem)] pb-[8vh] text-center [hyphens:none]"
           style={{
             color: "rgb(var(--navy))",
             opacity: visivel ? 1 : 0,
@@ -81,7 +81,12 @@ export default function Manifesto() {
             transition: "opacity 400ms cubic-bezier(.23,1,.32,1), transform 400ms cubic-bezier(.23,1,.32,1)",
           }}
         >
-          Um toque especial de quem domina a tecnologia com excelência.
+          {/* Quebra escrita a mao: no Canva sao DUAS linhas. Deixar o CSS
+              decidir com `balance` produzia tres, porque a medida estava
+              estreita demais. */}
+          Um toque especial de quem
+          <br />
+          domina a tecnologia com excelência.
         </p>
       </div>
     </section>
