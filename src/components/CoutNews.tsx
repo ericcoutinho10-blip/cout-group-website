@@ -122,7 +122,9 @@ export default function CoutNews() {
       <article className="group" style={surge(60)}>
         <div
           className="overflow-hidden"
-          style={{ marginInline: "calc(var(--outer-margin) * -1)" }}
+          /* Mesma sangria por viewport da Cultura: margem negativa por
+             `--outer-margin` para na borda do container, nao na da tela. */
+          style={{ width: "100vw", marginLeft: "calc(50% - 50vw)", marginRight: "calc(50% - 50vw)" }}
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img

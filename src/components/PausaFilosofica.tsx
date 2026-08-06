@@ -92,8 +92,13 @@ export default function PausaFilosofica() {
           className="overflow-hidden"
           style={{
             marginTop: "var(--s-h-space)",
-            marginInline: "calc(var(--outer-margin) * -1)",
-            width: "calc(100% + var(--outer-margin) * 2)",
+            /* Sangria de verdade: mede a JANELA, nao o container. A margem
+               negativa por `--outer-margin` so esticava ate a borda do pai,
+               que tem `max-w-[88rem]` — por isso sobrava faixa branca em tela
+               larga. `100vw` com `50% - 50vw` ignora o container inteiro. */
+            width: "100vw",
+            marginLeft: "calc(50% - 50vw)",
+            marginRight: "calc(50% - 50vw)",
           }}
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
