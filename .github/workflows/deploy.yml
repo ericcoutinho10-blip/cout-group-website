@@ -18,7 +18,10 @@ permissions:
 
 concurrency:
   group: pages
-  cancel-in-progress: true
+  # NAO cancelar em progresso: com `true`, disparar uma segunda publicacao
+  # enquanto a primeira estava na fila cancelava as duas, e o site ficava
+  # com a versao antiga sem nenhum erro visivel.
+  cancel-in-progress: false
 
 jobs:
   build:
