@@ -12,15 +12,15 @@ const cols = [
   {
     title: "Empresa",
     links: [
-      { label: "Sobre nós", href: "#about" },
-      { label: "Cases", href: "#works" },
+      { label: "Sobre nós", href: "#quem-somos" },
+      { label: "COUT NEWS", href: "#cout-news" },
       { label: "Contato", href: "#modal" },
     ],
   },
   {
     title: "Produtos",
     links: [
-      { label: "COUT OS", href: "#services" },
+      { label: "COUT OS", href: "#infraestrutura" },
       { label: "Agentes de IA", href: "#services" },
       { label: "Automação", href: "#services" },
       { label: "HealthOS", href: "#services" },
@@ -63,7 +63,7 @@ export default function Footer({ onOpenModal, onScrollTo }: FooterProps) {
           style={{ borderBottom: "1px solid rgba(255,255,255,0.1)" }}
         >
           <h2
-            className="font-semibold tracking-tight max-w-[16ch] leading-tight"
+            className="font-light tracking-tight max-w-[18ch] leading-tight"
             style={{
               fontSize: "clamp(2.25rem, 4vw, 3.75rem)",
               opacity: visible ? 1 : 0,
@@ -134,8 +134,8 @@ export default function Footer({ onOpenModal, onScrollTo }: FooterProps) {
              style={{ color: "rgba(255,255,255,0.45)" }}>
           <span>© 2025 COUT Group. Todos os direitos reservados.</span>
           <div className="flex gap-6">
-            <a href="#" className="hover:opacity-100 opacity-70 transition-opacity">Privacidade</a>
-            <a href="#" className="hover:opacity-100 opacity-70 transition-opacity">Termos</a>
+            <a href="https://wa.me/5511949545284" target="_blank" rel="noopener noreferrer" className="hover:opacity-100 opacity-70 transition-opacity">Privacidade</a>
+            <a href="https://wa.me/5511949545284" target="_blank" rel="noopener noreferrer" className="hover:opacity-100 opacity-70 transition-opacity">Termos</a>
           </div>
         </div>
       </div>

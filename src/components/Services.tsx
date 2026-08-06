@@ -13,14 +13,14 @@ import { useEffect, useRef, useState } from "react";
 // `coming` é opcional e hoje ninguém usa — mas o JSX lê `s.coming`. Sem o tipo
 // declarado, o TS infere a partir do array e a build de produção quebra (o dev
 // não pega). Mesma armadilha que já custou uma publicação no CreateBand.
-type Service = { idx: string; title: string; desc: string; coming?: boolean };
+type Service = { idx: string; title: string; desc: string; coming?: boolean; arte?: string };
 
 const services: Service[] = [
-  { idx: "01", title: "CRM", desc: "O relacionamento inteiro num lugar só — sem planilha paralela, sem histórico perdido na troca de turno." },
-  { idx: "02", title: "Dashboard", desc: "O estado real da operação em tempo real, para decidir com dado e não com impressão." },
-  { idx: "03", title: "Agentes de IA", desc: "Inteligência autônoma para atendimento, triagem e análise — com revisão humana antes do que importa." },
-  { idx: "04", title: "Growth Analytics", desc: "Onde o crescimento acontece, onde ele trava, e o que muda se você agir agora." },
-  { idx: "05", title: "Comunicação", desc: "Cada mensagem no canal certo, na hora certa, sem ninguém precisar lembrar de mandar." },
+  { idx: "01", title: "CRM", arte: "crm", desc: "O relacionamento inteiro num lugar só — sem planilha paralela, sem histórico perdido na troca de turno." },
+  { idx: "02", title: "Dashboard", arte: "dashboard", desc: "O estado real da operação em tempo real, para decidir com dado e não com impressão." },
+  { idx: "03", title: "Agentes de IA", arte: "agentes", desc: "Inteligência autônoma para atendimento, triagem e análise — com revisão humana antes do que importa." },
+  { idx: "04", title: "Growth Analytics", arte: "growth", desc: "Onde o crescimento acontece, onde ele trava, e o que muda se você agir agora." },
+  { idx: "05", title: "Comunicação", arte: "comunicacao", desc: "Cada mensagem no canal certo, na hora certa, sem ninguém precisar lembrar de mandar." },
 ];
 
 function ServiceRow({ s, delay, visible }: { s: typeof services[0]; delay: number; visible: boolean }) {

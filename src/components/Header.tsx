@@ -21,7 +21,7 @@ export const DESTINOS = [
   { label: "Quem Somos", id: "quem-somos" },
   { label: "Infraestrutura", id: "infraestrutura" },
   { label: "COUT NEWS", id: "cout-news" },
-  { label: "Filosofia", id: "filosofia" },
+  { label: "Cultura", id: "cultura" },
   { label: "Entre em Contato", id: "contato" },
 ] as const;
 

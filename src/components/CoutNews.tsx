@@ -116,9 +116,27 @@ export default function CoutNews() {
 
       {/* Capa: imagem larga, texto numa coluna estreita embaixo à esquerda —
           medida curta é o que faz um bloco longo parecer legível. */}
+      {/* Capa de fora a fora: a imagem sangra para fora da margem da seção,
+          como as faixas do rolex.org. É o que dá escala editorial — imagem
+          contida em coluna lê como card, imagem sangrando lê como capa. */}
       <article className="group" style={surge(60)}>
-        <Arte m={CAPA} alto />
-        <div className="mt-8 grid gap-x-[clamp(2rem,6vw,5rem)] gap-y-4 lg:grid-cols-[1.1fr_1fr]">
+        <div
+          className="overflow-hidden"
+          style={{ marginInline: "calc(var(--outer-margin) * -1)" }}
+        >
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={`${BASE}/news/capa.webp`}
+            alt=""
+            loading="lazy"
+            decoding="async"
+            width={2400}
+            height={1018}
+            className="w-full"
+            style={{ aspectRatio: "21 / 9", objectFit: "cover" }}
+          />
+        </div>
+        <div className="mt-10 grid gap-x-[clamp(2rem,6vw,5rem)] gap-y-4 lg:grid-cols-[1.1fr_1fr]">
           <div>
             <p className="t-label" style={{ color: "rgb(var(--graphite) / 0.5)" }}>
               {CAPA.kicker}

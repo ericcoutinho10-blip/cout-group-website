@@ -11,12 +11,15 @@ interface NavMenuProps {
 }
 
 const items = [
-  { label: "Início",    id: "home" },
-  { label: "Sobre",     id: "about" },
-  { label: "Produtos",  id: "services" },
-  { label: "Cases",     id: "works" },
-  { label: "Carreiras", id: "careers" },
-  { label: "Contato",   id: "modal" },
+  // Os mesmos seis destinos do header. A lista antiga (Início, Sobre,
+  // Produtos, Cases, Carreiras) era do site genérico anterior — "Cases"
+  // e "Carreiras" nunca existiram, e apontar para seção inexistente é
+  // pior do que não ter o item.
+  { label: "Quem Somos",       id: "quem-somos" },
+  { label: "Infraestrutura",   id: "infraestrutura" },
+  { label: "COUT NEWS",        id: "cout-news" },
+  { label: "Cultura",          id: "cultura" },
+  { label: "Entre em Contato", id: "contato" },
 ];
 
 export default function NavMenu({ open, onClose, onOpenModal, onScrollTo }: NavMenuProps) {

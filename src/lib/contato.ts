@@ -8,7 +8,7 @@
  *
  * Para ligar: preencher com DDI+DDD+número, só dígitos. Ex.: "5511999999999".
  */
-export const WHATSAPP = "";
+export const WHATSAPP = "5511949545284";
 
 export const WHATSAPP_ATIVO = /^\d{12,15}$/.test(WHATSAPP);
 

@@ -34,15 +34,7 @@ export default function About() {
       <div ref={ref} className="max-w-[88rem] mx-auto px-5 sm:px-8 grid grid-cols-1 lg:grid-cols-2 items-center gap-12 py-20 lg:py-28">
         {/* Coluna esquerda */}
         <div className="relative min-h-56 lg:min-h-80">
-          {/* Ícone de fundo */}
-          <svg
-            className="absolute -left-4 top-1/2 -translate-y-1/2 pointer-events-none select-none"
-            width="320" height="320" viewBox="0 0 24 24" fill="none"
-            stroke="#0F2540" strokeWidth="0.3" style={{ opacity: 0.07 }}
-          >
-            <circle cx="12" cy="12" r="9.25"/>
-            <path d="M12 2.75c2.6 2.3 4 5.8 4 9.25s-1.4 6.95-4 9.25c-2.6-2.3-4-5.8-4-9.25s1.4-6.95 4-9.25zM2.75 12h18.5"/>
-          </svg>
+          {/* Sem ícone de fundo: o globo era enfeite genérico. Fundo branco. */}
 
           {/* Eyebrow */}
           <div

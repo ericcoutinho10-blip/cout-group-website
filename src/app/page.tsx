@@ -9,7 +9,6 @@ import PosFilme from "@/components/PosFilme";
 import Manifesto from "@/components/Manifesto";
 import About from "@/components/About";
 import PausaFilosofica from "@/components/PausaFilosofica";
-import CreateBand from "@/components/CreateBand";
 import Services from "@/components/Services";
 import CoutNews from "@/components/CoutNews";
 import Fechamento from "@/components/Fechamento";
@@ -99,9 +98,8 @@ export default function Home() {
         {universoAberto && (
           <div id="universo" ref={universoRef}>
             <Manifesto />
-            <div id="filosofia"><PausaFilosofica /></div>
+            <div id="cultura"><PausaFilosofica /></div>
             <div id="quem-somos"><About /></div>
-            <div id="como-pensamos"><CreateBand /></div>
             <div id="infraestrutura"><Services /></div>
             <div id="cout-news"><CoutNews /></div>
             <Stats />

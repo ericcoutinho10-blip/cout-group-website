@@ -49,7 +49,7 @@ const BEATS: Beat[] = [
     from: 0.004,
     to: 0.058,
     hero: true,
-    top: ["O futuro da sua", "empresa começa", "AGORA!"],
+    top: ["O futuro da", "sua empresa", "começa agora."],
   },
   {
     // a mesa tomada por notificações
