@@ -209,7 +209,14 @@ export default function ScrollFilm({
       const st = ScrollTrigger.create({
         trigger: section,
         start: "top top",
-        end: () => `+=${window.innerHeight * 5}`,
+        /* `clientHeight`, nao `innerHeight`.
+         *
+         * No celular a barra de endereco some ao rolar e o `innerHeight`
+         * muda no meio do caminho. O fim do pin era recalculado com o valor
+         * novo, o Lenis ficava com o teto antigo e o visitante travava no
+         * meio do filme — parava na cena da recepcao e nao passava disso.
+         * `clientHeight` ignora a barra e nao oscila. */
+        end: () => `+=${document.documentElement.clientHeight * 5}`,
         pin: ".film-stage",
         pinSpacing: true,
         scrub: 0.8,
@@ -251,17 +258,34 @@ export default function ScrollFilm({
         (window as unknown as { __film?: unknown }).__film = { lenis, st, source };
       }
 
-      const onResize = () => { current = -1; draw(Math.round(state.frame)); };
+      /* Redesenha o quadro E religa o teto de rolagem.
+       *
+       * No celular a barra de endereco some ao rolar, a altura muda, e o
+       * Lenis fica com o limite antigo — o visitante travava no meio do
+       * filme, na cena da recepcao, sem conseguir passar. O `setTimeout`
+       * espera a altura assentar antes de recalcular. */
+      let reajuste: ReturnType<typeof setTimeout>;
+      const onResize = () => {
+        current = -1;
+        draw(Math.round(state.frame));
+        clearTimeout(reajuste);
+        reajuste = setTimeout(() => { ScrollTrigger.refresh(); lenis.resize(); }, 180);
+      };
       window.addEventListener("resize", onResize);
+      window.addEventListener("orientationchange", onResize);
 
       /* Quando a Camada 2 abre, o documento cresce. Sem refresh, o Lenis fica
        * com o limite antigo e a rolagem trava — o mesmo bug do pin. */
       const onLayout = () => { ScrollTrigger.refresh(); lenis.resize(); };
+
+
       window.addEventListener("cout:layout", onLayout);
 
       cleanup = () => {
         window.removeEventListener("resize", onResize);
         window.removeEventListener("cout:layout", onLayout);
+        window.removeEventListener("orientationchange", onResize);
+        clearTimeout(reajuste);
         st.kill();
         gsap.ticker.remove(raf);
         lenis.destroy();
