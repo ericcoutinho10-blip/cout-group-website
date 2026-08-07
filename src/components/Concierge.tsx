@@ -121,7 +121,7 @@ export default function Concierge() {
       <button
         onClick={() => setAberto((a) => !a)}
         aria-expanded={aberto}
-        className="fixed bottom-5 right-5 z-[70] flex items-center gap-2.5 rounded-full px-5 py-3.5 t-body shadow-lg"
+        className="fixed bottom-5 right-5 z-[70] flex items-center gap-2.5 rounded-full p-4 t-body shadow-lg sm:px-5 sm:py-3.5"
         style={{
           background: "rgb(var(--navy))",
           color: "#fff",
@@ -131,7 +131,9 @@ export default function Concierge() {
         onMouseLeave={(e) => (e.currentTarget.style.transform = "scale(1)")}
       >
         <MarcaCout altura="1.1rem" />
-        {aberto ? "Fechar" : "Falar com a COUT"}
+        {/* No celular so a marca: o rotulo por extenso ocupava metade da
+            largura e cobria a legenda do filme. Medido em 390px. */}
+        <span className="hidden sm:inline">{aberto ? "Fechar" : "Falar com a COUT"}</span>
       </button>
 
       {aberto && (

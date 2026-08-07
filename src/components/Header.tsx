@@ -66,10 +66,22 @@ export default function Header({ ready, onOpenMenu, onIrPara }: HeaderProps) {
       ultimoY = y;
     };
     medir();
+    /* Remedir depois que o layout assenta.
+     *
+     * Ao montar, o ScrollTrigger ainda nao criou o espaco do filme: a
+     * dobradica esta no topo, o header conclui "fundo claro" e fica navy
+     * sobre o filme escuro — 0,97:1 de contraste, invisivel. Como ninguem
+     * rola estando no topo, o `scroll` nunca corrigia. Medido em 390px. */
+    const r1 = requestAnimationFrame(medir);
+    const t1 = setTimeout(medir, 300);
+    const t2 = setTimeout(medir, 1200);
     window.addEventListener("scroll", medir, { passive: true });
+    window.addEventListener("resize", medir);
     window.addEventListener("cout:layout", medir);
     return () => {
+      cancelAnimationFrame(r1); clearTimeout(t1); clearTimeout(t2);
       window.removeEventListener("scroll", medir);
+      window.removeEventListener("resize", medir);
       window.removeEventListener("cout:layout", medir);
     };
   }, []);
