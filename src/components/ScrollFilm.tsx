@@ -140,17 +140,19 @@ export default function ScrollFilm({
       }
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
-      /* No desktop, `cover`: o quadro preenche a tela.
+      /* `cover` nos dois — a tela sempre preenchida, que e o ponto do
+       * scroll roller.
        *
-       * No celular, `contain` com tarja — letterbox. A tela e vertical e o
-       * filme e 16:9; com `cover` o visitante via so o miolo ampliado, sem
-       * enquadramento nenhum. Tarja e como se assiste filme no celular, e
-       * preserva a composicao de cada plano, que e o ponto do filme. */
+       * A tarja de letterbox foi testada e descartada: matava a imersao.
+       * Em vez de escolher entre cortar demais e tarjar, a sequencia do
+       * celular passou a ser REENQUADRADA em 9:16 na origem (810x1440),
+       * recortada do master 1080p. Assim `cover` quase nao corta mais nada
+       * no telefone, e cada plano chega em tela cheia com composicao
+       * propria — que e como as plataformas fazem video vertical. */
       const ir = img.width / img.height;
       const cr = w / h;
-      const preencher = w > 820;
       let dw = w, dh = h, dx = 0, dy = 0;
-      if (preencher ? ir > cr : ir < cr) { dw = h * ir; dx = (w - dw) / 2; }
+      if (ir > cr) { dw = h * ir; dx = (w - dw) / 2; }
       else { dh = w / ir; dy = (h - dh) / 2; }
       ctx.fillStyle = "#0F2540";
       ctx.fillRect(0, 0, w, h);
@@ -370,7 +372,7 @@ export default function ScrollFilm({
               {/* Faixa de legenda: base da tela, centralizada, medida curta.
                   Sempre no mesmo lugar — e isso que faz o olho parar de
                   procurar o texto e voltar para a imagem. */}
-              <div className="absolute inset-x-0 bottom-[calc(50%-38vw)] mx-auto w-full max-w-[min(92vw,54rem)] px-6 text-center sm:bottom-[9vh]">
+              <div className="absolute inset-x-0 bottom-[9vh] mx-auto w-full max-w-[min(92vw,54rem)] px-6 text-center">
                 {b.top && b.top.map((line, j) => (
                   <p key={j} className={base} style={fluid}>
                     {line}
