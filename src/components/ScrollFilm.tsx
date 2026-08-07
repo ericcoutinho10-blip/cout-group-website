@@ -209,7 +209,7 @@ export default function ScrollFilm({
       const st = ScrollTrigger.create({
         trigger: section,
         start: "top top",
-        end: () => `+=${window.innerHeight * 3}`,
+        end: () => `+=${window.innerHeight * 5}`,
         pin: ".film-stage",
         pinSpacing: true,
         scrub: 0.8,
@@ -388,21 +388,17 @@ export default function ScrollFilm({
                   </p>
                 ))}
 
-                {/* Pilares em linha, separados por traço, como o Eric escreveu:
-                    "Comunicação - Gestão - Organização - Análise & dados". */}
+                {/* No celular a lista vira frase corrida, separada por
+                    virgulas: quatro itens com traco quebravam em duas linhas
+                    desalinhadas e destoavam das outras legendas, que sao
+                    frases. No desktop segue em linha com traco. */}
                 {b.list && (
-                  <ul className="mt-3 flex flex-wrap items-center justify-center gap-x-3 gap-y-1">
-                    {b.list.map((item, k) => (
-                      <li
-                        key={item}
-                        className="font-normal text-white/85 drop-shadow-[0_1px_10px_rgba(0,0,0,0.85)]"
-                        style={{ fontSize: "var(--fs-body)" }}
-                      >
-                        {k > 0 && <span className="mr-3 opacity-50">-</span>}
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
+                  <p
+                    className="mt-2 font-normal text-white/85 [text-wrap:balance] drop-shadow-[0_1px_10px_rgba(0,0,0,0.85)]"
+                    style={fluid}
+                  >
+                    {b.list.join(", ")}.
+                  </p>
                 )}
               </div>
 
