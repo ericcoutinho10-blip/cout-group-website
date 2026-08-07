@@ -315,7 +315,7 @@ export default function ScrollFilm({
             nitida, e o navy ao redor e composicao — nao sobra. */}
         <canvas
           ref={canvasRef}
-          className="absolute inset-x-0 top-1/2 block h-[62vh] w-full -translate-y-1/2 sm:inset-0 sm:h-full sm:translate-y-0"
+          className="absolute inset-x-0 top-[11vh] block h-[60vh] w-full sm:inset-0 sm:top-0 sm:h-full"
           aria-hidden="true"
         />
 
@@ -341,8 +341,10 @@ export default function ScrollFilm({
            * acompanha a largura da janela; onde a quebra é inevitável (celular),
            * `text-wrap: balance` divide em linhas parelhas em vez de deixar
            * palavra órfã. */
+          /* Menor no celular: a legenda divide a tela com a faixa do filme
+             e precisa ficar discreta para o quadro seguir sendo o assunto. */
           const fluid: React.CSSProperties = {
-            fontSize: "var(--fs-lead)",
+            fontSize: "clamp(0.92rem, 3.4vw, var(--fs-lead))",
             lineHeight: 1.35,
           };
           const base =
@@ -379,7 +381,7 @@ export default function ScrollFilm({
               {/* Faixa de legenda: base da tela, centralizada, medida curta.
                   Sempre no mesmo lugar — e isso que faz o olho parar de
                   procurar o texto e voltar para a imagem. */}
-              <div className="absolute inset-x-0 bottom-[9vh] mx-auto w-full max-w-[min(92vw,54rem)] px-6 text-center">
+              <div className="absolute inset-x-0 top-[71vh] bottom-0 mx-auto flex w-full max-w-[min(92vw,54rem)] flex-col items-center justify-center px-6 text-center sm:top-auto sm:bottom-[9vh] sm:block">
                 {b.top && b.top.map((line, j) => (
                   <p key={j} className={base} style={fluid}>
                     {line}
