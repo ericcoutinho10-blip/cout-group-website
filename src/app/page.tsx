@@ -35,19 +35,26 @@ export default function Home() {
   const universoRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    /* Avisar o filme antes de travar o fundo: o Lenis precisa parar, senao
+     * disputa a rolagem com o `overflow: hidden` e congela a pagina. */
     document.body.style.overflow = menuOpen ? "hidden" : "";
+    window.dispatchEvent(new Event(menuOpen ? "cout:travar-rolagem" : "cout:destravar-rolagem"));
   }, [menuOpen]);
 
   /* Navegar para um destino do Universo abre a Camada 2 primeiro, se ainda
    * estiver fechada — é a saída de emergência para quem não quer o filme. */
   const irPara = useCallback((id: string) => {
     setUniversoAberto(true);
-    requestAnimationFrame(() => {
+    /* Nao depender so de `requestAnimationFrame`: ele nao roda em aba de
+     * segundo plano, e ali a navegacao falhava em silencio — a Camada 2 nao
+     * abria e o clique nao levava a lugar nenhum. Mesmo defeito que o loader
+     * tinha. O `setTimeout` e estrangulado em aba oculta, mas dispara. */
+    const irAgora = () => {
       window.dispatchEvent(new Event("cout:layout"));
-      setTimeout(() => {
-        document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
-      }, 60);
-    });
+      document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
+    };
+    requestAnimationFrame(() => setTimeout(irAgora, 60));
+    setTimeout(irAgora, 260);
   }, []);
 
   /* Todo CTA do site abre o atendimento, não mais o formulário de e-mail.
@@ -63,10 +70,12 @@ export default function Home() {
    * antes do fim, que foi exatamente o bug do pin do filme. */
   const abrirUniverso = useCallback(() => {
     setUniversoAberto(true);
-    requestAnimationFrame(() => {
+    const irAgora = () => {
       window.dispatchEvent(new Event("cout:layout"));
       universoRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
-    });
+    };
+    requestAnimationFrame(irAgora);
+    setTimeout(irAgora, 260);
   }, []);
 
   return (

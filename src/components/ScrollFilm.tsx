@@ -281,9 +281,22 @@ export default function ScrollFilm({
 
       window.addEventListener("cout:layout", onLayout);
 
+      /* Menu aberto: o Lenis PARA.
+       *
+       * A pagina travava `overflow: hidden` no body para o menu, mas o
+       * Lenis continuava rodando e disputando o controle da rolagem. Os
+       * dois brigavam e o scroll roller congelava. `stop()` entrega o
+       * controle enquanto o menu existe, e `start()` devolve ao fechar. */
+      const travar = () => lenis.stop();
+      const destravar = () => lenis.start();
+      window.addEventListener("cout:travar-rolagem", travar);
+      window.addEventListener("cout:destravar-rolagem", destravar);
+
       cleanup = () => {
         window.removeEventListener("resize", onResize);
         window.removeEventListener("cout:layout", onLayout);
+        window.removeEventListener("cout:travar-rolagem", travar);
+        window.removeEventListener("cout:destravar-rolagem", destravar);
         window.removeEventListener("orientationchange", onResize);
         clearTimeout(reajuste);
         st.kill();
