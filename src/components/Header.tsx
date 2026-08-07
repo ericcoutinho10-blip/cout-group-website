@@ -150,7 +150,14 @@ export default function Header({ ready, onOpenMenu, onIrPara }: HeaderProps) {
           </nav>
 
           <button
-            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+            onClick={() => {
+              /* Pelo Lenis: `window.scrollTo` nao dirige a pagina enquanto
+                 ele controla a rolagem — o clique na marca nao voltava ao
+                 topo. */
+              const l = (window as unknown as { __film?: { lenis?: { scrollTo: (t: number, o?: object) => void } } }).__film?.lenis;
+              if (l) l.scrollTo(0, { duration: 1.2 });
+              else window.scrollTo({ top: 0, behavior: "smooth" });
+            }}
             className="ml-1 flex shrink-0 items-center gap-2 rounded-full px-3 py-2 t-body font-medium tracking-tight sm:ml-2"
             style={{ color: `rgb(${tinta})`, transition: suave }}
             aria-label="Voltar ao topo"

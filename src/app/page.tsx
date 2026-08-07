@@ -28,6 +28,16 @@ import NavMenu from "@/components/NavMenu";
  * Primeiro se vive a marca. Só depois, se quiser, se conhece a empresa.
  * ──────────────────────────────────────────────────────────────────── */
 
+/** Rola pedindo ao Lenis, que e quem controla a rolagem. `scrollIntoView`
+ *  do navegador nao funciona enquanto ele roda. Cai no metodo nativo se o
+ *  Lenis ainda nao existir (filme ainda carregando, ou movimento reduzido). */
+function rolarAte(el: HTMLElement | null) {
+  if (!el) return;
+  const lenis = (window as unknown as { __film?: { lenis?: { scrollTo: (t: HTMLElement, o?: object) => void } } }).__film?.lenis;
+  if (lenis) lenis.scrollTo(el, { offset: 0, duration: 1.2 });
+  else el.scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
 export default function Home() {
   const [ready, setReady] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -51,7 +61,7 @@ export default function Home() {
      * tinha. O `setTimeout` e estrangulado em aba oculta, mas dispara. */
     const irAgora = () => {
       window.dispatchEvent(new Event("cout:layout"));
-      document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
+      rolarAte(document.getElementById(id));
     };
     requestAnimationFrame(() => setTimeout(irAgora, 60));
     setTimeout(irAgora, 260);
@@ -72,7 +82,7 @@ export default function Home() {
     setUniversoAberto(true);
     const irAgora = () => {
       window.dispatchEvent(new Event("cout:layout"));
-      universoRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+      rolarAte(universoRef.current);
     };
     requestAnimationFrame(irAgora);
     setTimeout(irAgora, 260);

@@ -253,10 +253,14 @@ export default function ScrollFilm({
       ScrollTrigger.refresh();
       requestAnimationFrame(() => lenis.resize());
 
-      // afordância de teste: permite dirigir a rolagem em dev sem lutar com o Lenis
-      if (process.env.NODE_ENV !== "production") {
-        (window as unknown as { __film?: unknown }).__film = { lenis, st, source };
-      }
+      /* O Lenis fica acessivel SEMPRE, nao so em dev.
+       *
+       * Ele sequestra a rolagem da pagina: `scrollIntoView` e `scrollTo` do
+       * navegador nao dirigem nada enquanto ele roda — e era assim que os
+       * destinos do menu tentavam navegar. O clique nao levava a lugar
+       * nenhum, ou a pagina dava um salto estranho. Quem quiser rolar
+       * precisa pedir ao Lenis. */
+      (window as unknown as { __film?: unknown }).__film = { lenis, st, source };
 
       /* Redesenha o quadro E religa o teto de rolagem.
        *
