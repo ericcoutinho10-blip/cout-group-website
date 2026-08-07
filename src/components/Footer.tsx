@@ -149,7 +149,7 @@ export default function Footer({ onOpenModal, onScrollTo }: FooterProps) {
         {/* Legal */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-xs"
              style={{ color: "rgba(255,255,255,0.45)" }}>
-          <span>© 2025 COUT Group. Todos os direitos reservados.</span>
+          <span>© 2025 COUT Group. Todos os direitos reservados | Hillsboro, OR.</span>
           <div className="flex gap-6">
             <a href="https://wa.me/5511949545284" target="_blank" rel="noopener noreferrer" className="hover:opacity-100 opacity-70 transition-opacity">Privacidade</a>
             <a href="https://wa.me/5511949545284" target="_blank" rel="noopener noreferrer" className="hover:opacity-100 opacity-70 transition-opacity">Termos</a>

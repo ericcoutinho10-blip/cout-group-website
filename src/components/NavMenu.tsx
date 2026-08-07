@@ -40,8 +40,8 @@ export default function NavMenu({ open, onClose, onOpenModal, onScrollTo }: NavM
     <div
       className="fixed inset-0 z-[115] flex flex-col"
       style={{
-        background: "#0F2540",
-        color: "#fff",
+        background: "#fff",
+        color: "#0F2540",
         opacity: open ? 1 : 0,
         pointerEvents: open ? "all" : "none",
         transition: "opacity 0.4s cubic-bezier(0.16,1,0.3,1)",
@@ -49,7 +49,7 @@ export default function NavMenu({ open, onClose, onOpenModal, onScrollTo }: NavM
     >
       {/* Topo */}
       <div className="max-w-[88rem] mx-auto w-full px-5 sm:px-8 flex items-center justify-between py-5">
-        <div className="flex items-center gap-2 text-lg font-semibold text-white">
+        <div className="flex items-center gap-2 text-lg font-semibold text-cout-navy">
           <MarcaCout altura="1.5rem" />
           COUT Group
         </div>
@@ -57,8 +57,8 @@ export default function NavMenu({ open, onClose, onOpenModal, onScrollTo }: NavM
           onClick={onClose}
           className="inline-flex items-center gap-2 text-xs font-medium uppercase tracking-widest rounded-[0.875rem] px-4 py-2 transition-all duration-200"
           style={{
-            border: "1px solid rgba(255,255,255,0.15)",
-            color: "rgba(255,255,255,0.7)",
+            border: "1px solid rgba(15,37,64,0.18)",
+            color: "rgba(15,37,64,0.7)",
             letterSpacing: "0.05em",
           }}
         >
@@ -78,16 +78,16 @@ export default function NavMenu({ open, onClose, onOpenModal, onScrollTo }: NavM
                 onClick={() => handle(id)}
                 className="flex items-center gap-4 w-full text-left py-2 font-semibold tracking-tight transition-all duration-300"
                 style={{
-                  fontSize: "clamp(2.25rem, 5vw, 3.75rem)",
+                  fontSize: "var(--fs-h1)",
                   opacity: open ? 1 : 0,
                   transform: open ? "translateY(0)" : "translateY(1rem)",
                   transition: `opacity 0.5s ease-out ${i * 45 + 80}ms, transform 0.5s ease-out ${i * 45 + 80}ms`,
                 }}
               >
-                <span className="text-base font-normal" style={{ color: "rgba(255,255,255,0.3)" }}>
+                <span className="text-base font-normal" style={{ color: "rgba(15,37,64,0.35)" }}>
                   0{i + 1}
                 </span>
-                <span style={{ color: "rgba(255,255,255,0.7)" }} className="hover:text-white transition-colors duration-200">
+                <span style={{ color: "rgba(15,37,64,0.75)" }} className="hover:text-cout-navy transition-colors duration-200">
                   {label}
                 </span>
               </button>
@@ -99,7 +99,7 @@ export default function NavMenu({ open, onClose, onOpenModal, onScrollTo }: NavM
       {/* Rodapé do menu */}
       <div
         className="max-w-[88rem] mx-auto w-full px-5 sm:px-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 py-6 text-xs uppercase tracking-widest"
-        style={{ borderTop: "1px solid rgba(255,255,255,0.1)", color: "rgba(255,255,255,0.45)" }}
+        style={{ borderTop: "1px solid rgba(15,37,64,0.10)", color: "rgba(15,37,64,0.5)" }}
       >
         {/* O "Horário local" saiu daqui também — ele não existe no mockup do
             Canva e não ajuda ninguém a decidir nada. Sobrou só o convite. */}
@@ -107,7 +107,7 @@ export default function NavMenu({ open, onClose, onOpenModal, onScrollTo }: NavM
         <button
           onClick={() => handle("modal")}
           className="text-left transition-colors duration-200 hover:underline"
-          style={{ color: "rgba(255,255,255,0.7)" }}
+          style={{ color: "rgba(15,37,64,0.75)" }}
         >
           Falar com um especialista →
         </button>
