@@ -140,15 +140,18 @@ export default function ScrollFilm({
       }
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
-      /* `cover` nos dois — a tela sempre preenchida, que e o ponto do
-       * scroll roller.
+      /* Desktop: `cover` em tela cheia.
        *
-       * A tarja de letterbox foi testada e descartada: matava a imersao.
-       * Em vez de escolher entre cortar demais e tarjar, a sequencia do
-       * celular passou a ser REENQUADRADA em 9:16 na origem (810x1440),
-       * recortada do master 1080p. Assim `cover` quase nao corta mais nada
-       * no telefone, e cada plano chega em tela cheia com composicao
-       * propria — que e como as plataformas fazem video vertical. */
+       * Celular: o canvas nao e mais a tela inteira — e uma FAIXA de 4:3
+       * centrada, e o navy ao redor faz parte da composicao. O motivo e
+       * aritmetico: encher uma tela 9:19,5 com filme 16:9 obriga a jogar
+       * fora 68% da largura e ampliar o resto, o que dava super zoom e
+       * perda visivel. A faixa guarda 75% da largura do master e chega
+       * nitida num telefone de alta densidade.
+       *
+       * Nao e tarja acidental: e enquadramento. A faixa ocupa a maior
+       * parte da tela, a legenda encosta nela, e o navy ao redor e o mesmo
+       * do resto do site. */
       const ir = img.width / img.height;
       const cr = w / h;
       let dw = w, dh = h, dx = 0, dy = 0;
@@ -306,9 +309,13 @@ export default function ScrollFilm({
   return (
     <section ref={sectionRef} className="relative bg-cout-navy" aria-label="Filme institucional COUT">
       <div className="film-stage relative h-screen w-full overflow-hidden">
+        {/* No celular o canvas e uma faixa centrada, nao a tela inteira:
+            encher 9:19,5 com filme 16:9 exigia jogar fora 68% da largura e
+            ampliar o resto. A faixa ocupa a maior parte da tela, chega
+            nitida, e o navy ao redor e composicao — nao sobra. */}
         <canvas
           ref={canvasRef}
-          className="absolute inset-0 block h-full w-full"
+          className="absolute inset-x-0 top-1/2 block h-[62vh] w-full -translate-y-1/2 sm:inset-0 sm:h-full sm:translate-y-0"
           aria-hidden="true"
         />
 
