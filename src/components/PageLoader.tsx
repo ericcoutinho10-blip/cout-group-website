@@ -93,13 +93,13 @@ export default function PageLoader({ onDone }: PageLoaderProps) {
         {/* a marca herda currentColor: sobre o navy do loader precisa ser clara */}
         <div className="flex items-center gap-3 text-white">
           <MarcaCout altura="2rem" />
-          <span className="text-2xl font-semibold tracking-tight">
+          <span className="t-h3 font-semibold tracking-tight">
             COUT Group
           </span>
         </div>
 
         {/* Tagline */}
-        <p className="max-w-[24ch] text-sm text-center leading-relaxed"
+        <p className="max-w-[24ch] t-body text-center leading-relaxed"
            style={{ color: "rgba(255,255,255,0.55)" }}>
           Infraestrutura Inteligente para o que vem a seguir.
         </p>
@@ -122,7 +122,7 @@ export default function PageLoader({ onDone }: PageLoaderProps) {
         </div>
 
         <div
-          className="flex justify-between text-xs font-medium uppercase"
+          className="flex justify-between t-label font-medium uppercase"
           style={{ letterSpacing: "0.05em", color: "rgba(255,255,255,0.45)" }}
         >
           <span>Carregando</span>

@@ -49,13 +49,13 @@ export default function NavMenu({ open, onClose, onOpenModal, onScrollTo }: NavM
     >
       {/* Topo */}
       <div className="max-w-[88rem] mx-auto w-full px-5 sm:px-8 flex items-center justify-between py-5">
-        <div className="flex items-center gap-2 text-lg font-semibold text-cout-navy">
+        <div className="flex items-center gap-2 t-lead font-semibold text-cout-navy">
           <MarcaCout altura="1.5rem" />
           COUT Group
         </div>
         <button
           onClick={onClose}
-          className="inline-flex items-center gap-2 text-xs font-medium uppercase tracking-widest rounded-[0.875rem] px-4 py-2 transition-all duration-200"
+          className="inline-flex items-center gap-2 t-label font-medium uppercase tracking-widest rounded-[0.875rem] px-4 py-2 transition-all duration-200"
           style={{
             border: "1px solid rgba(15,37,64,0.18)",
             color: "rgba(15,37,64,0.7)",
@@ -84,7 +84,7 @@ export default function NavMenu({ open, onClose, onOpenModal, onScrollTo }: NavM
                   transition: `opacity 0.5s ease-out ${i * 45 + 80}ms, transform 0.5s ease-out ${i * 45 + 80}ms`,
                 }}
               >
-                <span className="text-base font-normal" style={{ color: "rgba(15,37,64,0.35)" }}>
+                <span className="t-body font-normal" style={{ color: "rgba(15,37,64,0.35)" }}>
                   0{i + 1}
                 </span>
                 <span style={{ color: "rgba(15,37,64,0.75)" }} className="hover:text-cout-navy transition-colors duration-200">
@@ -98,7 +98,7 @@ export default function NavMenu({ open, onClose, onOpenModal, onScrollTo }: NavM
 
       {/* Rodapé do menu */}
       <div
-        className="max-w-[88rem] mx-auto w-full px-5 sm:px-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 py-6 text-xs uppercase tracking-widest"
+        className="max-w-[88rem] mx-auto w-full px-5 sm:px-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 py-6 t-label uppercase tracking-widest"
         style={{ borderTop: "1px solid rgba(15,37,64,0.10)", color: "rgba(15,37,64,0.5)" }}
       >
         {/* O "Horário local" saiu daqui também — ele não existe no mockup do

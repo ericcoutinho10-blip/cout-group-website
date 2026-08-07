@@ -80,7 +80,7 @@ export default function Manifesto() {
             /* Menor e mais embaixo: o braco escuro da arte cruza a altura em
                que o texto estava, e navy sobre navy some. Aqui ele pousa na
                faixa clara do rodape da imagem, onde o contraste e alto. */
-            fontSize: "clamp(1.35rem, 2.6vw, 2.35rem)",
+            fontSize: "var(--fs-h3)",
             lineHeight: 1.25,
             fontWeight: 300,
             color: "rgb(var(--navy))",

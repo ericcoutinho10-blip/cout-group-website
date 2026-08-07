@@ -68,7 +68,7 @@ export default function Footer({ onOpenModal, onScrollTo }: FooterProps) {
           <h2
             className="font-light tracking-tight max-w-[18ch] leading-tight"
             style={{
-              fontSize: "clamp(2.25rem, 4vw, 3.75rem)",
+              fontSize: "var(--fs-h1)",
               opacity: visible ? 1 : 0,
               transform: visible ? "translateY(0)" : "translateY(20px)",
               transition: "opacity 900ms cubic-bezier(0.215,0.61,0.355,1), transform 900ms cubic-bezier(0.215,0.61,0.355,1)",
@@ -79,7 +79,7 @@ export default function Footer({ onOpenModal, onScrollTo }: FooterProps) {
 
           <button
             onClick={onOpenModal}
-            className="group inline-flex items-center gap-3 rounded-full text-sm font-medium shrink-0 transition-transform duration-300 hover:scale-[1.04]"
+            className="group inline-flex items-center gap-3 rounded-full t-body font-medium shrink-0 transition-transform duration-300 hover:scale-[1.04]"
             style={{
               background: "#F7F9FC", color: "#0F2540",
               padding: "0.375rem 0.375rem 0.375rem 1.5rem",
@@ -102,11 +102,11 @@ export default function Footer({ onOpenModal, onScrollTo }: FooterProps) {
              style={{ borderBottom: "1px solid rgba(255,255,255,0.1)" }}>
           {/* Marca */}
           <div>
-            <div className="mb-4 flex items-center gap-2 text-lg font-semibold text-white">
+            <div className="mb-4 flex items-center gap-2 t-lead font-semibold text-white">
               <MarcaCout altura="1.5rem" />
               COUT Group
             </div>
-            <p className="text-sm leading-relaxed max-w-[20rem]" style={{ color: "rgba(255,255,255,0.55)" }}>
+            <p className="t-body leading-relaxed max-w-[20rem]" style={{ color: "rgba(255,255,255,0.55)" }}>
               {/* "Estúdio independente construindo marcas e produtos" era
                   descricao de agencia de design — o oposto do que o site
                   inteiro afirma. A COUT constroi infraestrutura. */}
@@ -116,7 +116,7 @@ export default function Footer({ onOpenModal, onScrollTo }: FooterProps) {
 
           {cols.map((col) => (
             <div key={col.title}>
-              <p className="text-xs uppercase tracking-widest mb-4" style={{ color: "rgba(255,255,255,0.4)" }}>
+              <p className="t-label uppercase tracking-widest mb-4" style={{ color: "rgba(255,255,255,0.4)" }}>
                 {col.title}
               </p>
               <ul className="flex flex-col gap-3">
@@ -127,14 +127,14 @@ export default function Footer({ onOpenModal, onScrollTo }: FooterProps) {
                         href={link.href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-sm opacity-65 transition-all duration-200 hover:translate-x-1 hover:opacity-100 inline-block"
+                        className="t-body opacity-65 transition-all duration-200 hover:translate-x-1 hover:opacity-100 inline-block"
                       >
                         {link.label}
                       </a>
                     ) : (
                       <button
                         onClick={() => onScrollTo(link.href.slice(1))}
-                        className="text-sm transition-all duration-200 hover:translate-x-1 hover:opacity-100 opacity-65 text-left"
+                        className="t-body transition-all duration-200 hover:translate-x-1 hover:opacity-100 opacity-65 text-left"
                       >
                         {link.label}
                       </button>
@@ -147,7 +147,7 @@ export default function Footer({ onOpenModal, onScrollTo }: FooterProps) {
         </div>
 
         {/* Legal */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-xs"
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 t-label"
              style={{ color: "rgba(255,255,255,0.45)" }}>
           <span>© 2025 COUT Group. Todos os direitos reservados | Hillsboro, OR.</span>
           <div className="flex gap-6">

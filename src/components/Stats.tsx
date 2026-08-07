@@ -58,7 +58,7 @@ export default function Stats() {
           }}
         >
           {/* Eyebrow */}
-          <div className="flex items-center gap-2 text-sm font-medium mb-4"
+          <div className="flex items-center gap-2 t-body font-medium mb-4"
                style={{ color: "rgba(255,255,255,0.7)" }}>
             <span className="inline-block rounded-full" style={{ width: "0.375rem", height: "0.375rem", background: "rgba(255,255,255,0.6)" }}/>
             Em números
@@ -67,7 +67,7 @@ export default function Stats() {
           {/* Título */}
           <h2
             className="font-medium leading-tight tracking-tight max-w-[20ch] mb-14"
-            style={{ fontSize: "clamp(1.875rem, 3vw, 2.25rem)" }}
+            style={{ fontSize: "var(--fs-h2)" }}
           >
             Prova no trabalho, não nas palavras.
           </h2>
@@ -85,11 +85,11 @@ export default function Stats() {
               >
                 <p
                   className="font-semibold tracking-tight tabular-nums leading-none"
-                  style={{ fontSize: "clamp(3rem, 5vw, 4.5rem)" }}
+                  style={{ fontSize: "var(--fs-h1)" }}
                 >
                   {counts[i]}{s.suffix}
                 </p>
-                <p className="mt-3 text-sm" style={{ color: "rgba(255,255,255,0.55)" }}>
+                <p className="mt-3 t-body" style={{ color: "rgba(255,255,255,0.55)" }}>
                   {s.label}
                 </p>
               </div>

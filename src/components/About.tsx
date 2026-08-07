@@ -40,7 +40,7 @@ export default function About() {
             humanoide e a pessoa encaixando a mesma peca. */}
         <div className="relative">
           <div
-            className="flex items-center gap-2 text-sm font-medium mb-5"
+            className="flex items-center gap-2 t-body font-medium mb-5"
             style={{ color: "rgba(31,41,55,0.7)" }}
           >
             <span className="inline-block rounded-full" style={{ width: "0.375rem", height: "0.375rem", background: "rgba(31,41,55,0.5)" }}/>
@@ -75,7 +75,7 @@ export default function About() {
 
         {/* Coluna direita — statement */}
         <div className="flex flex-col gap-10">
-          <p className="text-2xl sm:text-3xl font-medium leading-[1.35] tracking-tight" style={{ color: "#1F2937" }}>
+          <p className="t-h3 sm:t-h2 font-medium leading-[1.35] tracking-tight" style={{ color: "#1F2937" }}>
             {words.map((w, i) => (
               <span
                 key={i}

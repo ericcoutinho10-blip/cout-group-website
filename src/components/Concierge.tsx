@@ -102,7 +102,7 @@ export default function Concierge() {
       style={{ maxWidth: "88%" }}
     >
       <p
-        className="rounded-[1.25rem] px-4 py-3 text-[0.95rem] leading-relaxed"
+        className="rounded-[1.25rem] px-4 py-3 t-body leading-relaxed"
         style={
           f.de === "cout"
             ? { background: "rgb(var(--ice))", color: "rgb(var(--graphite))" }
@@ -121,7 +121,7 @@ export default function Concierge() {
       <button
         onClick={() => setAberto((a) => !a)}
         aria-expanded={aberto}
-        className="fixed bottom-5 right-5 z-[70] flex items-center gap-2.5 rounded-full px-5 py-3.5 text-[0.95rem] shadow-lg"
+        className="fixed bottom-5 right-5 z-[70] flex items-center gap-2.5 rounded-full px-5 py-3.5 t-body shadow-lg"
         style={{
           background: "rgb(var(--navy))",
           color: "#fff",
@@ -151,7 +151,7 @@ export default function Concierge() {
             style={{ borderBottom: "1px solid rgb(var(--graphite) / 0.08)" }}
           >
             <MarcaCout altura="1.15rem" />
-            <span className="text-[0.95rem] font-medium">COUT</span>
+            <span className="t-body font-medium">COUT</span>
             <span className="t-label ml-auto" style={{ color: "rgb(var(--graphite) / 0.45)" }}>
               Atendimento
             </span>
@@ -166,7 +166,7 @@ export default function Concierge() {
                   <button
                     key={a.id}
                     onClick={() => escolheArea(a.id, a.label)}
-                    className="rounded-full px-3.5 py-2 text-[0.9rem]"
+                    className="rounded-full px-3.5 py-2 t-body"
                     style={{
                       border: "1px solid rgb(var(--graphite) / 0.18)",
                       color: "rgb(var(--graphite) / 0.85)",
@@ -186,7 +186,7 @@ export default function Concierge() {
                 href={linkWhatsApp(lead)}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-2 self-start rounded-full px-5 py-3 text-[0.95rem]"
+                className="mt-2 self-start rounded-full px-5 py-3 t-body"
                 style={{ background: "rgb(var(--blue))", color: "#fff" }}
               >
                 Continuar no WhatsApp →
@@ -216,7 +216,7 @@ export default function Concierge() {
                       ? "Seu nome"
                       : "Nome da organização"
                 }
-                className="flex-1 rounded-full px-4 py-2.5 text-[0.95rem] outline-none"
+                className="flex-1 rounded-full px-4 py-2.5 t-body outline-none"
                 style={{
                   background: "rgb(var(--ice))",
                   color: "rgb(var(--graphite))",

@@ -59,7 +59,7 @@ function ServiceRow({ s, delay, visible, onAbrir }: { s: Service; delay: number;
         }}
       >
         <span
-          className="shrink-0 text-sm font-medium tabular-nums"
+          className="shrink-0 t-body font-medium tabular-nums"
           style={{ width: "1.75rem", color: "rgba(31,41,55,0.4)" }}
         >
           {s.idx}
@@ -67,11 +67,11 @@ function ServiceRow({ s, delay, visible, onAbrir }: { s: Service; delay: number;
 
         <h3
           className="flex-1 font-medium tracking-tight"
-          style={{ fontSize: "clamp(1.25rem, 2.5vw, 2.25rem)" }}
+          style={{ fontSize: "var(--fs-h3)" }}
         >
           {s.title}
           {s.coming && (
-            <span className="ml-3 text-sm font-normal rounded-full px-3 py-1 align-middle"
+            <span className="ml-3 t-body font-normal rounded-full px-3 py-1 align-middle"
                   style={{ background: "#D8E5F7", color: "#3F7BD9" }}>
               Em breve
             </span>
@@ -79,7 +79,7 @@ function ServiceRow({ s, delay, visible, onAbrir }: { s: Service; delay: number;
         </h3>
 
         <p
-          className="hidden lg:block max-w-xs text-sm leading-relaxed"
+          className="hidden lg:block max-w-xs t-body leading-relaxed"
           style={{ color: "rgba(31,41,55,0.55)" }}
         >
           {s.desc}
@@ -130,7 +130,7 @@ export default function Services() {
       <div ref={ref} className="max-w-[88rem] mx-auto px-5 sm:px-8 py-20 lg:py-28">
         {/* Cabeçalho */}
         <div
-          className="flex items-center gap-2 text-sm font-medium mb-5"
+          className="flex items-center gap-2 t-body font-medium mb-5"
           style={{ color: "rgba(31,41,55,0.7)" }}
         >
           <span className="inline-block rounded-full" style={{ width: "0.375rem", height: "0.375rem", background: "rgba(31,41,55,0.5)" }}/>
@@ -141,7 +141,7 @@ export default function Services() {
           <h2
             className="font-semibold tracking-tight max-w-[16ch]"
             style={{
-              fontSize: "clamp(2.25rem, 4vw, 3rem)",
+              fontSize: "var(--fs-h2)",
               opacity: visible ? 1 : 0,
               transform: visible ? "translateY(0)" : "translateY(100%)",
               transition: "opacity 900ms cubic-bezier(0.215,0.61,0.355,1) 0.12s, transform 900ms cubic-bezier(0.215,0.61,0.355,1) 0.12s",

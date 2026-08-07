@@ -112,7 +112,7 @@ export default function Header({ ready, onOpenMenu, onIrPara }: HeaderProps) {
         >
           <button
             onClick={onOpenMenu}
-            className="flex shrink-0 items-center gap-2 rounded-full px-3 py-2 text-[0.95rem] font-normal"
+            className="flex shrink-0 items-center gap-2 rounded-full px-3 py-2 t-body font-normal"
             style={{ color: `rgb(${tinta})`, transition: suave }}
             aria-label="Abrir o menu"
           >
@@ -127,7 +127,7 @@ export default function Header({ ready, onOpenMenu, onIrPara }: HeaderProps) {
               <button
                 key={id}
                 onClick={() => onIrPara(id)}
-                className="whitespace-nowrap rounded-full px-3 py-2 text-[0.95rem] font-normal xl:px-4"
+                className="whitespace-nowrap rounded-full px-3 py-2 t-body font-normal xl:px-4"
                 style={{ color: `rgb(${tinta} / 0.82)`, transition: suave }}
                 onMouseEnter={(e) => (e.currentTarget.style.color = `rgb(${tinta})`)}
                 onMouseLeave={(e) => (e.currentTarget.style.color = `rgb(${tinta} / 0.82)`)}
@@ -139,7 +139,7 @@ export default function Header({ ready, onOpenMenu, onIrPara }: HeaderProps) {
 
           <button
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-            className="ml-1 flex shrink-0 items-center gap-2 rounded-full px-3 py-2 text-base font-medium tracking-tight sm:ml-2"
+            className="ml-1 flex shrink-0 items-center gap-2 rounded-full px-3 py-2 t-body font-medium tracking-tight sm:ml-2"
             style={{ color: `rgb(${tinta})`, transition: suave }}
             aria-label="Voltar ao topo"
           >

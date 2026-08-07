@@ -270,14 +270,14 @@ export default function ScrollFilm({
     return (
       <section className="relative bg-cout-navy px-6 py-32 text-white sm:px-10">
         <div className="mx-auto max-w-4xl">
-          <p className="mb-6 text-xs uppercase tracking-[0.2em] text-cout-soft">
+          <p className="mb-6 t-label uppercase tracking-[0.2em] text-cout-soft">
             Infraestrutura Inteligente
           </p>
           <h1 className="text-4xl font-light leading-[1.05] tracking-tight sm:text-6xl">
             O futuro da sua empresa começa{" "}
             <span className="font-medium text-cout-blue">AGORA</span>
           </h1>
-          <div className="mt-14 space-y-8 text-lg font-light text-white/70">
+          <div className="mt-14 space-y-8 t-lead font-light text-white/70">
             {BEATS.slice(1).map((b, i) => (
               <p key={i}>
                 {[...(b.top ?? []), ...(b.list ?? []), ...(b.bottom ?? [])].join(" ")}
@@ -286,7 +286,7 @@ export default function ScrollFilm({
           </div>
           <button
             onClick={onOpenModal}
-            className="mt-14 rounded-full bg-white px-8 py-4 text-sm font-medium text-cout-navy transition hover:bg-cout-ice"
+            className="mt-14 rounded-full bg-white px-8 py-4 t-body font-medium text-cout-navy transition hover:bg-cout-ice"
           >
             Agendar conversa
           </button>
@@ -314,7 +314,7 @@ export default function ScrollFilm({
 
         {/* indicador de carregamento inicial */}
         {pct < 16 && (
-          <div className="pointer-events-none absolute bottom-8 left-1/2 -translate-x-1/2 text-[0.65rem] uppercase tracking-[0.25em] text-white/50">
+          <div className="pointer-events-none absolute bottom-8 left-1/2 -translate-x-1/2 t-label uppercase tracking-[0.25em] text-white/50">
             carregando {pct}%
           </div>
         )}
@@ -327,7 +327,7 @@ export default function ScrollFilm({
            * `text-wrap: balance` divide em linhas parelhas em vez de deixar
            * palavra órfã. */
           const fluid: React.CSSProperties = {
-            fontSize: "clamp(1.05rem, 1.7vw, 1.6rem)",
+            fontSize: "var(--fs-lead)",
             lineHeight: 1.35,
           };
           const base =
@@ -379,7 +379,7 @@ export default function ScrollFilm({
                       <li
                         key={item}
                         className="font-normal text-white/85 drop-shadow-[0_1px_10px_rgba(0,0,0,0.85)]"
-                        style={{ fontSize: "clamp(0.95rem, 1.4vw, 1.3rem)" }}
+                        style={{ fontSize: "var(--fs-body)" }}
                       >
                         {k > 0 && <span className="mr-3 opacity-50">-</span>}
                         {item}
