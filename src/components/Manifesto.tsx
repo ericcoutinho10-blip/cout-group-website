@@ -67,7 +67,7 @@ export default function Manifesto() {
       </div>
 
       <div
-        className="relative mx-auto flex min-h-[86vh] max-w-[88rem] flex-col justify-end"
+        className="relative mx-auto flex min-h-[56vh] max-w-[88rem] flex-col justify-end sm:min-h-[86vh]"
         style={{ paddingInline: "var(--outer-margin)" }}
       >
         {/* A frase volta a ser texto de verdade, centralizada embaixo como

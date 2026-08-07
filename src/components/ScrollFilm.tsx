@@ -140,11 +140,17 @@ export default function ScrollFilm({
       }
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
-      // object-fit: cover
+      /* No desktop, `cover`: o quadro preenche a tela.
+       *
+       * No celular, `contain` com tarja — letterbox. A tela e vertical e o
+       * filme e 16:9; com `cover` o visitante via so o miolo ampliado, sem
+       * enquadramento nenhum. Tarja e como se assiste filme no celular, e
+       * preserva a composicao de cada plano, que e o ponto do filme. */
       const ir = img.width / img.height;
       const cr = w / h;
+      const preencher = w > 820;
       let dw = w, dh = h, dx = 0, dy = 0;
-      if (ir > cr) { dw = h * ir; dx = (w - dw) / 2; }
+      if (preencher ? ir > cr : ir < cr) { dw = h * ir; dx = (w - dw) / 2; }
       else { dh = w / ir; dy = (h - dh) / 2; }
       ctx.fillStyle = "#0F2540";
       ctx.fillRect(0, 0, w, h);
@@ -364,7 +370,7 @@ export default function ScrollFilm({
               {/* Faixa de legenda: base da tela, centralizada, medida curta.
                   Sempre no mesmo lugar — e isso que faz o olho parar de
                   procurar o texto e voltar para a imagem. */}
-              <div className="absolute inset-x-0 bottom-[9vh] mx-auto w-full max-w-[min(92vw,54rem)] px-6 text-center">
+              <div className="absolute inset-x-0 bottom-[calc(50%-38vw)] mx-auto w-full max-w-[min(92vw,54rem)] px-6 text-center sm:bottom-[9vh]">
                 {b.top && b.top.map((line, j) => (
                   <p key={j} className={base} style={fluid}>
                     {line}
